@@ -1,10 +1,10 @@
 <?php
 return [
-    'host'  =>  "",
-    'port'  =>  "",
-    'name'  =>  "app/database/samples.db",
-    'user'  =>  "",
-    'pass'  =>  "",
-    'type'  =>  "sqlite",
+    'host'  =>  "192.168.202.10",
+    'port'  =>  "3306",
+    'name'  =>  "samples",
+    'user'  =>  "admin",
+    'pass'  =>  "admin",
+    'type'  =>  "mysql",
     'prep'  =>  "1"
 ];
