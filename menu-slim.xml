@@ -1,4 +1,9 @@
 <menu>
+    <menuitem label='Kanban'>
+        <icon>fas:columns fa-fw</icon>
+        <action>KanbanDatabaseView</action>
+    </menuitem>
+    
     <menuitem label='_t{Persistence}'>
         <icon>fa:database fa-fw</icon>
         <menu>
