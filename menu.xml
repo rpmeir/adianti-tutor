@@ -619,6 +619,10 @@
                         <icon>fa:info fa-fw</icon>
                         <action>TInfoBoxView</action>
                     </menuitem>
+                    <menuitem label='SwitchView'>
+                        <icon>fa:toggle-on fa-fw</icon>
+                        <action>SwitchView</action>
+                    </menuitem>
                 </menu>
                 
             </menuitem>

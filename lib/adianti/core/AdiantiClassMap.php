@@ -96,6 +96,7 @@ class AdiantiClassMap
         $classPath['TButton']                    = 'lib/adianti/widget/form/TButton.php';
         $classPath['TCheckButton']               = 'lib/adianti/widget/form/TCheckButton.php';
         $classPath['TCheckGroup']                = 'lib/adianti/widget/form/TCheckGroup.php';
+        $classPath['TSwitch']                    = 'lib/adianti/widget/form/TSwitch.php';
         $classPath['TColor']                     = 'lib/adianti/widget/form/TColor.php';
         $classPath['TIcon']                      = 'lib/adianti/widget/form/TIcon.php';
         $classPath['TCombo']                     = 'lib/adianti/widget/form/TCombo.php';
