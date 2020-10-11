@@ -1,4 +1,7 @@
 <?php
+
+use Adianti\Widget\Form\TRadioGroup;
+
 /**
  * Tabular report
  *
@@ -30,11 +33,15 @@ class TabularReport extends TPage
         $city_id      = new TDBUniqueSearch('city_id', 'samples', 'City', 'id', 'name');
         $category_id  = new TDBCombo('category_id', 'samples', 'Category', 'id', 'name');
         $output_type  = new TRadioGroup('output_type');
+        $format_type  = new TRadioGroup('format_type');
+        $orientation  = new TRadioGroup('orientation');
         
         $this->form->addFields( [new TLabel('Customer')],     [$name] );
         $this->form->addFields( [new TLabel('City')],     [$city_id] );
         $this->form->addFields( [new TLabel('Category')], [$category_id] );
         $this->form->addFields( [new TLabel('Output')],   [$output_type] );
+        $this->form->addFields( [new TLabel('Format')],   [$format_type] );
+        $this->form->addFields( [new TLabel('Orientation')],   [$orientation] );
         
         // define field properties
         $name->setSize( '80%' );
@@ -46,6 +53,15 @@ class TabularReport extends TPage
         $output_type->addItems($options);
         $output_type->setValue('pdf');
         $output_type->setLayout('horizontal');
+        $format_type->addItems(array('A3'=>'A3', 'A4'=>'A4', 'A5'=>'A5', 'LETTER' => 'LETTER', 'LEGAL' => 'LEGAL'));
+        $format_type->setValue('A4');
+        $format_type->setLayout('horizontal');
+        $format_type->setUseButton();
+        $orientation->addItems(array('P'=>'Portrait', 'L'=>'Landscape'));
+        $orientation->setValue('P');
+        $orientation->setLayout('horizontal');
+        $orientation->setUseButton();
+
         
         $this->form->addAction( 'Generate', new TAction(array($this, 'onGenerate')), 'fa:download blue');
         
@@ -90,22 +106,24 @@ class TabularReport extends TPage
             }
            
             $customers = $repository->load($criteria);
-            $format  = $data->output_type;
+            $extension  = empty($data->output_type) ? 'html' : $data->output_type;
+            $orientation = empty($data->orientation) ? 'P' : $data->orientation;
+            $format = empty($data->format_type) ? 'A4' : $data->format_type;
             
             if ($customers)
             {
                 $widths = array(40, 200, 80, 120, 80);
                 
-                switch ($format)
+                switch ($extension)
                 {
                     case 'html':
                         $table = new TTableWriterHTML($widths);
                         break;
                     case 'pdf':
-                        $table = new TTableWriterPDF($widths);
+                        $table = new TTableWriterPDF($widths, $orientation, $format);
                         break;
                     case 'rtf':
-                        $table = new TTableWriterRTF($widths);
+                        $table = new TTableWriterRTF($widths, $orientation, $format);
                         break;
                     case 'xls':
                         $table = new TTableWriterXLS($widths);
@@ -155,7 +173,7 @@ class TabularReport extends TPage
                         $colour = !$colour;
                     }
                     
-                    $output = "app/output/tabular.{$format}";
+                    $output = "app/output/tabular.{$extension}";
                     
                     // stores the file
                     if (!file_exists($output) OR is_writable($output))

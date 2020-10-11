@@ -416,6 +416,10 @@
                                 <icon>fa:exclamation-triangle fa-fw</icon>
                                 <action>FormValidationView</action>
                             </menuitem>
+                            <menuitem label='Expansão de Filtro'>
+                                <icon>fa:table fa-fw</icon>
+                                <action>ProductList</action>
+                            </menuitem>
                          </menu>
                     </menuitem>
                     <menuitem>

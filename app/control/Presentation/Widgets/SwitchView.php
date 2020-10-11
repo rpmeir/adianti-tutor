@@ -30,6 +30,27 @@ class SwitchView extends TPage
         $switch1 = new TSwitch('switch_test1', 'Teste 01');
         $switch2 = new TSwitch('switch_test2', 'Teste 02');
         
+        $this->form->add('<hr>');
+
+        $this->form->add(
+            '<div class="custom-control custom-switch">
+                <input class="custom-control-input" widget="tswitch" name="switch_test1" type="checkbox" id="tswitch_1515741931">
+                <label class="custom-control-label" for="tswitch_1515741931">
+                    Teste 01
+                </label>
+            </div><hr>'
+        );
+        
+        $this->form->add(
+            '<div class="switch">
+                <label>
+                    <input type="checkbox" checked="">
+                    <span class="lever"></span>
+                    ON
+                </label>
+            </div><hr>'
+        );
+
         // add the fields inside the form
         $this->form->addFields( 
             [new TLabel(''), $switch1],

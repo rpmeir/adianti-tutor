@@ -108,6 +108,7 @@ class TSwitch extends TField implements AdiantiWidgetInterface
      */
     public function show()
     {
+    
         // define the tag properties
         $this->tag->{'name'}  = $this->name;    // TAG name
         $this->tag->{'type'}  = 'checkbox';         // input type
@@ -134,17 +135,26 @@ class TSwitch extends TField implements AdiantiWidgetInterface
             $this->tag->{'style'}   = 'pointer-events:none';
             $this->tag->{'tabindex'} = '-1';
         }
-        
+
         $div = new TElement('div');
-        $div->{'class'} = 'custom-control custom-switch';
+        $div->{'class'} = 'custom-control custom-switch switch';
         
+        $label1 = new TElement('label');
+
         $label = new TElement('label');
         $label->{'class'} = 'custom-control-label';
         $label->{'for'} = $this->id;
         $label->add($this->label);
         
-        $div->add($this->tag);
-        $div->add($label);
+        $span = new TElement('span');
+        $span->{'class'} = 'lever';
+
+        $label1->add('off');
+        $label1->add($this->tag);
+        $label1->add($span);
+        $label1->add($this->label);
+
+        $div->add($label1);
         
         $div->show();
         

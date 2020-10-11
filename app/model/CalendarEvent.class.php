@@ -7,7 +7,7 @@ class CalendarEvent extends TRecord
 {
     const TABLENAME  = 'calendar_event';
     const PRIMARYKEY = 'id';
-    const IDPOLICY   = 'serial'; // {max, serial}
+    const IDPOLICY   = 'max'; // {max, serial}
     
     /**
      * Constructor method

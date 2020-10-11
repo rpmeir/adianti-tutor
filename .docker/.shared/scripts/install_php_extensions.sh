@@ -14,4 +14,5 @@ chmod uga+x /usr/local/bin/install-php-extensions && sync && install-php-extensi
     xdebug \
     zip \
     pdo_mysql \
+    gd \
 ;

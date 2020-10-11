@@ -26,6 +26,9 @@ class FullCalendarDatabaseView extends TPage
         $this->fc->setEventUpdateAction(new TAction(array('CalendarEventForm', 'onUpdateEvent')));
         
         $this->fc->setOption('businessHours', [ [ 'dow' => [ 1, 2, 3, 4, 5 ], 'start' => '08:00', 'end' => '18:00' ]]);
+        $this->fc->setOption('firstDay', 0 );
+        $this->fc->setOption('selectable', true );
+        $this->fc->setOption('slotDuration', '00:10' );
         //$this->fc->setTimeRange('10:00', '18:00');
         //$this->fc->disableDragging();
         //$this->fc->disableResizing();
