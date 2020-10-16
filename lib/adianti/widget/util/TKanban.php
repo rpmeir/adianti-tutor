@@ -298,9 +298,10 @@ class TKanban extends TElement
             $stageDiv                = new TElement('div');
             $stageDiv->{'stage_id'}  = $stage->{'id'};
             $stageDiv->{'class'}     = 'kanban-stage';
+            $stageDiv->{'style'}     = 'width: clamp(400px, 20%, 600px);';
             if (!empty($stage->{'color'}))
             {
-                $stageDiv->{'style'} = 'background:'.$stage->{'color'};
+                $stageDiv->{'style'} .= 'background:'.$stage->{'color'};
             }
             $stageDiv->add($title);
 
