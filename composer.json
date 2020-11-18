@@ -13,5 +13,8 @@
         "firebase/php-jwt": "^5.0",
     "pablodalloglio/ole": "dev-master",
     "pablodalloglio/spreadsheet_excel_writer": "dev-master"
-    }
+    },
+  "require-dev": {
+    "phpunit/phpunit": "^9"
+  }
 }
