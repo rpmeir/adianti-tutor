@@ -140,8 +140,11 @@ class CustomerStatusView extends TPage
             // string with HTML contents
             $contents = $html->getContents();
             
+            $options = new \Dompdf\Options();
+            $options->setChroot(getcwd());
+            
             // converts the HTML template into PDF
-            $dompdf = new \Dompdf\Dompdf();
+            $dompdf = new \Dompdf\Dompdf($options);
             $dompdf->loadHtml($contents);
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();

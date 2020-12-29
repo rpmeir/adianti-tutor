@@ -416,6 +416,10 @@
                                 <icon>fa:exclamation-triangle fa-fw</icon>
                                 <action>FormValidationView</action>
                             </menuitem>
+                            <menuitem label='_t{Seek button}'>
+                                <icon>fa:search fa-fw</icon>
+                                <action>FormSeekButtonView</action>
+                            </menuitem>
                             <menuitem label='Expansão de Filtro'>
                                 <icon>fa:table fa-fw</icon>
                                 <action>ProductList</action>
@@ -448,10 +452,6 @@
                                 <icon>fa:bolt fa-fw</icon>
                                 <action>FormShowHideRowsView</action>
                             </menuitem>
-                            <menuitem label='_t{Seek button}'>
-                                <icon>fa:search fa-fw</icon>
-                                <action>FormSeekButtonView</action>
-                            </menuitem>
                             <menuitem label='_t{Sort List}'>
                                 <icon>fa:sort fa-fw</icon>
                                 <action>FormSortView</action>
@@ -463,6 +463,14 @@
                             <menuitem label='_t{Html Editor}'>
                                 <icon>fa:code fa-fw</icon>
                                 <action>FormHtmlEditorView</action>
+                            </menuitem>
+                            <menuitem label='_t{Barcode, QRCode reader}'>
+                                <icon>fa:barcode fa-fw</icon>
+                                <action>FormCodeReader</action>
+                            </menuitem>
+                            <menuitem label='_t{Image upload and cropper}'>
+                                <icon>fa:image fa-fw</icon>
+                                <action>FormImageUploader</action>
                             </menuitem>
                         </menu>
                     </menuitem>

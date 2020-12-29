@@ -127,7 +127,7 @@ class PDFDesignNFEView extends TPage
                 $designer->save($file);
                 //parent::openFile($file);
                 
-                $window = TWindow::create(_t('Designed PDF NFE'), 0.8, 0.8);
+                $window = TWindow::create(_t('Studio Pro - designed Danfe'), 0.8, 0.8);
                 $object = new TElement('object');
                 $object->data  = $file;
                 $object->type  = 'application/pdf';

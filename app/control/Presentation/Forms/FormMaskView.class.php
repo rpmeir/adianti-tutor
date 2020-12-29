@@ -40,6 +40,7 @@ class FormMaskView extends TPage
         $element12= new TEntry('element12');
         $element13= new TEntry('element13');
         $element14= new TEntry('element14');
+        $element15= new TEntry('element15');
         
         $element1->setMask('99.999-999');
         $element2->setMask('99.999-999', true);
@@ -55,6 +56,7 @@ class FormMaskView extends TPage
         $element12->forceUpperCase();
         $element13->forceLowerCase();
         $element14->setNumericMask(2, ',', '.', true);
+        $element15->setNumericMask(2, ',', '.', true, true);
         
         $element1->setValue('95.900-716');
         $element2->setValue('95900716');
@@ -79,6 +81,7 @@ class FormMaskView extends TPage
         $this->form->addFields( [new TLabel('Element 12 force uppercase')], [$element12] );
         $this->form->addFields( [new TLabel('Element 13 force lowercase')], [$element13] );
         $this->form->addFields( [new TLabel('Element 14 numeric mask')], [$element14] );
+        $this->form->addFields( [new TLabel('Element 15 reverse numeric mask')], [$element15] );
         
         $this->form->addAction( 'Send', new TAction([$this, 'onSend']), 'far:check-circle green');
         

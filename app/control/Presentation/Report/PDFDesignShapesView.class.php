@@ -68,7 +68,7 @@ class PDFDesignShapesView extends TPage
                 $designer->save($file);
                 // parent::openFile($file);
                 
-                $window = TWindow::create(_t('Designed PDF shapes'), 0.8, 0.8);
+                $window = TWindow::create(_t('Studio Pro - designed shapes'), 0.8, 0.8);
                 $object = new TElement('object');
                 $object->data  = $file;
                 $object->type  = 'application/pdf';

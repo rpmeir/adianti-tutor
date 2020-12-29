@@ -31,6 +31,11 @@ class SaleForm extends TWindow
         $customer_id = new TDBUniqueSearch('customer_id', 'samples', 'Customer', 'id', 'name');
         $obs         = new TText('obs');
         
+        $button = new TActionLink('', new TAction(['CustomerFormWindow', 'onEdit']), 'green', null, null, 'fa:plus-circle');
+        $button->class = 'btn btn-default inline-button';
+        $button->title = _t('New');
+        $customer_id->after($button);
+        
         // detail fields
         $product_detail_unqid      = new THidden('product_detail_uniqid');
         $product_detail_id         = new THidden('product_detail_id');
@@ -42,7 +47,8 @@ class SaleForm extends TWindow
         
         // adjust field properties
         $id->setEditable(false);
-        $customer_id->setSize('100%');
+        //$customer_id->setSize('100%');
+        $customer_id->setSize('calc(100% - 30px)');
         $customer_id->setMinLength(1);
         $date->setSize('100%');
         $obs->setSize('100%', 80);

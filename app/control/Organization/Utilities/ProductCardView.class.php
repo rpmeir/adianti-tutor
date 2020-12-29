@@ -43,7 +43,7 @@ class ProductCardView extends TPage
         // creates the Card View
         $this->cards = new TCardView;
 		$this->cards->setContentHeight(170);
-		$this->cards->setTitleAttribute('description');
+		$this->cards->setTitleAttribute('{description} (#{id})');
 		
 		$this->setCollectionObject($this->cards);
 		

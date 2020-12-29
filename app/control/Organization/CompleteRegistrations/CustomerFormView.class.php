@@ -13,20 +13,29 @@ class CustomerFormView extends TPage
 {
     private $form; // form
     private $contacts;
+    private $embedded;
     
     /**
      * Class constructor
      * Creates the page and the registration form
      */
-    function __construct()
+    function __construct( $param, $embedded = false)
     {
         parent::__construct();
         
-        parent::setTargetContainer('adianti_right_panel');
+        $this->embedded = $embedded;
+        
+        if (!$this->embedded)
+        {
+            parent::setTargetContainer('adianti_right_panel');
+        }
         
         // creates the form
         $this->form = new BootstrapFormBuilder('form_customer');
-        $this->form->setFormTitle('Customer');
+        if (!$this->embedded)
+        {
+            $this->form->setFormTitle('Customer');
+        }
         $this->form->setClientValidation(true);
         
         // create the form fields
@@ -41,6 +50,11 @@ class CustomerFormView extends TPage
         $status      = new TCombo('status');
         $category_id = new TDBCombo('category_id', 'samples', 'Category', 'id', 'name');
         
+        $button = new TActionLink('', new TAction(['CityWindow', 'onClear']), 'green', null, null, 'fa:plus-circle');
+        $button->class = 'btn btn-default inline-button';
+        $button->title = _t('New');
+        $city_id->after($button);
+        
         // add the combo options
         $gender->addItems( [ 'M' => 'Male', 'F' => 'Female' ] );
         $status->addItems( [ 'S' => 'Single', 'C' => 'Committed', 'M' => 'Married' ] );
@@ -49,7 +63,7 @@ class CustomerFormView extends TPage
         // define some properties for the form fields
         $code->setEditable(FALSE);
         $code->setSize('30%');
-        $city_id->setSize('100%');
+        $city_id->setSize('calc(100% - 30px)');
         $birthdate->setSize('100%');
         $status->setSize('100%');
         $category_id->setSize('100%');
@@ -98,9 +112,13 @@ class CustomerFormView extends TPage
         $category_id->addValidation('Category', new TRequiredValidator);
         $city_id->addValidation('City', new TRequiredValidator);
         
-        $this->form->addAction( 'Save', new TAction([$this, 'onSave']), 'fa:save green' );
-        $this->form->addActionLink( 'Clear', new TAction([$this, 'onClear']), 'fa:eraser red' );
-        $this->form->addHeaderActionLink( _t('Close'), new TAction([$this, 'onClose']), 'fa:times red');
+        $this->form->addAction( 'Save', new TAction([$this, 'onSave'], ['embedded' => $embedded ? '1' : '0']), 'fa:save green' );
+        
+        if (!$this->embedded)
+        {
+            $this->form->addActionLink( 'Clear', new TAction([$this, 'onClear']), 'fa:eraser red' );
+            $this->form->addHeaderActionLink( _t('Close'), new TAction([$this, 'onClose']), 'fa:times red');
+        }
         
         // add the form inside the page
         parent::add($this->form);
@@ -158,13 +176,20 @@ class CustomerFormView extends TPage
             $data->id = $customer->id;
             TForm::sendData('form_customer', $data);
             
-            TScript::create("Template.closeRightPanel()");
-
-            $posAction = new TAction(array('CustomerDataGridView', 'onReload'));
-            $posAction->setParameter('target_container', 'adianti_div_content');
-            
-            // shows the success message
-            new TMessage('info', 'Record saved', $posAction);
+            if (!$param['embedded'])
+            {
+                TScript::create("Template.closeRightPanel()");
+    
+                $posAction = new TAction(array('CustomerDataGridView', 'onReload'));
+                $posAction->setParameter('target_container', 'adianti_div_content');
+                
+                // shows the success message
+                new TMessage('info', 'Record saved', $posAction);
+            }
+            else
+            {
+                TWindow::closeWindowByName('CustomerFormWindow');
+            }
             
             TTransaction::close(); // close the transaction
         }

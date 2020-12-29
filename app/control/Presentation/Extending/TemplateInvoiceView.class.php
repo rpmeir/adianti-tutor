@@ -91,8 +91,11 @@ class TemplateInvoiceView extends TPage
             $html = clone $this->html;
             $contents = file_get_contents('app/resources/styles-print.html') . $html->getContents();
             
+            $options = new \Dompdf\Options();
+            $options->setChroot(getcwd());
+            
             // converts the HTML template into PDF
-            $dompdf = new \Dompdf\Dompdf();
+            $dompdf = new \Dompdf\Dompdf($options);
             $dompdf->loadHtml($contents);
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();
@@ -104,7 +107,7 @@ class TemplateInvoiceView extends TPage
             
             $window = TWindow::create('Invoice', 0.8, 0.8);
             $object = new TElement('object');
-            $object->data  = $file;
+            $object->data  = $file.'?rndval='.uniqid();
             $object->type  = 'application/pdf';
             $object->style = "width: 100%; height:calc(100% - 10px)";
             $window->add($object);

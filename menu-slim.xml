@@ -1,5 +1,4 @@
 <menu>
-    
     <menuitem label='_t{Persistence}'>
         <icon>fa:database fa-fw</icon>
         <menu>

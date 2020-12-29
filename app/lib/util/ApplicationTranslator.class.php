@@ -363,6 +363,8 @@ class ApplicationTranslator
         $this->messages['en'][] = 'Filesystem Icon View';
         $this->messages['en'][] = 'Notebook events';
         $this->messages['en'][] = 'Field list events';
+        $this->messages['en'][] = 'Barcode, QRCode reader';
+        $this->messages['en'][] = 'Image upload and cropper';
         //fim
         
         $this->messages['pt'][] = 'Arquivo não encontrado';
@@ -708,6 +710,8 @@ class ApplicationTranslator
         $this->messages['pt'][] = 'Ícones sistema de arquivos';
         $this->messages['pt'][] = 'Eventos de notebook';
         $this->messages['pt'][] = 'Eventos de field list';
+        $this->messages['pt'][] = 'Leitor de Barcode, QRCode';
+        $this->messages['pt'][] = 'Upload e ajuste de imagem';
         //fim
         
         $this->enWords = [];

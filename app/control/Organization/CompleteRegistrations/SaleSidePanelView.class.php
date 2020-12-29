@@ -122,8 +122,11 @@ class SaleSidePanelView extends TPage
             $html = clone $this->form;
             $contents = file_get_contents('app/resources/styles-print.html') . $html->getContents();
             
+            $options = new \Dompdf\Options();
+            $options->setChroot(getcwd());
+            
             // converts the HTML template into PDF
-            $dompdf = new \Dompdf\Dompdf();
+            $dompdf = new \Dompdf\Dompdf($options);
             $dompdf->loadHtml($contents);
             $dompdf->setPaper('A4', 'portrait');
             $dompdf->render();

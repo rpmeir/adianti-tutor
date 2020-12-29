@@ -88,6 +88,13 @@ class FormBuilderView extends TPage
         $this->form->addAction('Send', new TAction(array($this, 'onSend')), 'far:check-circle green');
         $this->form->addHeaderAction('Send', new TAction(array($this, 'onSend')), 'fa:rocket orange');
         
+        // extra dropdown.
+        $dropdown = new TDropDown('Dropdown test', 'fa:th blue');
+        $dropdown->addPostAction( 'PostAction', new TAction(array($this, 'onSend') ), $this->form->getName(), 'far:check-circle');
+        $dropdown->addAction( 'Shortcut to customers', new TAction(array('CustomerDataGridView', 'onReload') ), 'fa:link');
+        $this->form->addFooterWidget($dropdown);
+        $this->form->addHeaderWidget($dropdown);
+        
         // wrap the page content using vertical box
         $vbox = new TVBox;
         $vbox->style = 'width: 100%';

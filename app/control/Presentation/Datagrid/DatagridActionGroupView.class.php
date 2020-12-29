@@ -27,6 +27,9 @@ class DatagridActionGroupView extends TPage
         $city       = new TDataGridColumn('city',    'City',    'left',   '30%');
         $state      = new TDataGridColumn('state',   'State',   'left',   '30%');
         
+        $code->enableAutoHide(800);
+        $state->enableAutoHide(800);
+        
         // add the columns to the datagrid, with actions on column titles, passing parameters
         $this->datagrid->addColumn($code);
         $this->datagrid->addColumn($name);
@@ -62,11 +65,15 @@ class DatagridActionGroupView extends TPage
         // creates the datagrid model
         $this->datagrid->createModel();
         
+        $panel = new TPanelGroup(_t('Datagrids Actions group'));
+        $panel->add($this->datagrid);
+        $panel->addFooter('footer');
+        
         // wrap the page content using vertical box
         $vbox = new TVBox;
         $vbox->style = 'width: 100%';
         $vbox->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
-        $vbox->add(TPanelGroup::pack(_t('Datagrids Actions group'), $this->datagrid, 'footer'));
+        $vbox->add($panel);
 
         parent::add($vbox);
     }

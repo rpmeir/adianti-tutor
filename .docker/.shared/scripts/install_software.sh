@@ -1,6 +1,7 @@
 #!/bin/sh
 
 apt-get update -yqq && apt-get install -yqq \
+    apt-utils \
     curl \
     dnsutils \
     gdb \
@@ -17,4 +18,7 @@ apt-get update -yqq && apt-get install -yqq \
     unzip \
     vim \
     wget \
+    libnss3-tools \
+    build-essential \
+    file \
 ;

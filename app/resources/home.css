@@ -9,6 +9,10 @@
 .multicolumn
 {
     width: 100%;
+    margin: auto;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
 }
 
 .multicolumn .home-card {
@@ -18,13 +22,13 @@
     float: left;
     line-height:1.5em;
     width: calc(50% - 10px);
-    min-height: 64px;
-    border: 1px solid gray;
+    min-height: 60px;
     padding: 17px;
-    border-radius: 3px;
     margin: 5px;
     text-decoration: none;
     display: flex;
+    border: 1px solid #c9c9c9;
+    border-radius: 3px;
 }
 
 .container-fluid .multicolumn .home-card {
