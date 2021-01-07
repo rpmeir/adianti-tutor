@@ -1,4 +1,16 @@
 <?php
+
+use Adianti\Control\TAction;
+use Adianti\Control\TPage;
+use Adianti\Widget\Base\TElement;
+use Adianti\Widget\Base\TStyle;
+use Adianti\Widget\Container\TVBox;
+use Adianti\Widget\Dialog\TMessage;
+use Adianti\Widget\Form\TLabel;
+use Adianti\Widget\Form\TSwitch;
+use Adianti\Widget\Util\TXMLBreadCrumb;
+use Adianti\Wrapper\BootstrapFormBuilder;
+
 /**
  * SwitchView
  *
@@ -29,33 +41,56 @@ class SwitchView extends TPage
         // creates the dropdown
         $switch1 = new TSwitch('switch_test1', 'Teste 01');
         $switch2 = new TSwitch('switch_test2', 'Teste 02');
-        
-        $this->form->add('<hr>');
-
-        $this->form->add(
-            '<div class="custom-control custom-switch">
-                <input class="custom-control-input" widget="tswitch" name="switch_test1" type="checkbox" id="tswitch_1515741931">
-                <label class="custom-control-label" for="tswitch_1515741931">
-                    Teste 01
-                </label>
-            </div><hr>'
-        );
-        
-        $this->form->add(
-            '<div class="switch">
-                <label>
-                    <input type="checkbox" checked="">
-                    <span class="lever"></span>
-                    ON
-                </label>
-            </div><hr>'
-        );
 
         // add the fields inside the form
         $this->form->addFields( 
             [new TLabel(''), $switch1],
             [new TLabel('Switch 02'), $switch2]
         )->layout = ['col-6','col-6'];
+        
+        $uid = uniqid();
+
+        $this->form->add(
+            '<hr>
+            <div class="row" >
+                <div class="col-3" >
+                    <div class="custom-control custom-switch">
+                        <input class="custom-control-input" widget="tswitch" name="switch_test1" type="checkbox" id="tswitch_'.$uid.'">
+                        <label class="custom-control-label" for="tswitch_'.$uid.'">
+                            TESTE 01
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3" >
+                    <div class="switch">
+                        <label>
+                            <input type="checkbox" checked="">
+                            <span class="lever"></span>
+                            TESTE 02
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3" >
+                    <div class="custom-control custom-switch switch">
+                        <label>
+                            <input type="checkbox" checked="" class="custom-control-input" widget="tswitch" name="switch_test1" id="tswitch_'.$uid.'xxx">
+                            <span class="custom-control-label" for="tswitch_'.$uid.'xxx"><span>
+                            TESTE 03
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3" >
+                    <div class="custom-control custom-switch switch">
+                        <span>
+                            <input type="checkbox" checked="" class="custom-control-input" id="tswitch_'.$uid.'yyy">
+                            <label class="lever custom-control-label" for="tswitch_'.$uid.'yyy" ></label>
+                            TESTE 04
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <hr>'
+        );
         
         // define the form action 
         $this->form->addAction('Send', new TAction(array($this, 'onSend'), ['static' => '1']), 'far:check-circle green');
