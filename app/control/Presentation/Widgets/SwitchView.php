@@ -2,8 +2,6 @@
 
 use Adianti\Control\TAction;
 use Adianti\Control\TPage;
-use Adianti\Widget\Base\TElement;
-use Adianti\Widget\Base\TStyle;
 use Adianti\Widget\Container\TVBox;
 use Adianti\Widget\Dialog\TMessage;
 use Adianti\Widget\Form\TLabel;
