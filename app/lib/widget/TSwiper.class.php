@@ -19,6 +19,7 @@ use ApplicationTranslator;
 class TSwiper extends TElement
 {
 
+    private $wrapper;
     private $templatePath;
     private $itemTemplate;
     private $itemHeight;
@@ -26,7 +27,6 @@ class TSwiper extends TElement
     private $pagination; // position bug on progressbar type, should stay on top
     private $arrows; // minimal position bug on prev button
     private $scrollbar;
-    private $items;
     private $breakpoints;
     private $options;
 
@@ -44,10 +44,17 @@ class TSwiper extends TElement
         $this->scrollbar = FALSE;
         $this->breakpoints = [];
         $this->options = [];
+
+        $this->wrapper = new TElement('div');
+        $this->wrapper->{'class'} = 'swiper-wrapper';
+        
+        parent::add($this->wrapper);
     }
     
     /**
      * Set extra tswiper options (ex: effect, grabCursor, direction, spaceBetween...)
+     * @param string $option Name of available option in Swiper
+     * @param mixed $value Value to set for option
      */
     private function setOption($option, $value)
     {
@@ -56,6 +63,7 @@ class TSwiper extends TElement
 
     /**
      * Get extra tswiper options (ex: effect, grabCursor, direction, spaceBetween...)
+     * @return string $options Json encode with current options 
      */
     public function getOptions()
     {
@@ -65,24 +73,20 @@ class TSwiper extends TElement
     
     /**
      * Add item
-     * @param  $object Item data object
+     * @param object $object Item data object
+     * @param string $template String with html template
+     * @param string $path String with path of html file template
      */
-    public function addItem($object)
+    public function addItem($object, $template = '', $path = '')
     {
-        $this->items[] = $object;
-    }
-
-    /**
-     * Clear items
-     */
-    public function clear()
-    {
-        $this->items = [];
+        $html_emplate = !empty($template) ? $template : $this->itemTemplate;
+        $file_path = !empty($path) ? $path : $this->templatePath;
+        $this->wrapper->add(new TSwiperItem($object, $html_emplate, $file_path));
     }
     
     /**
      * Set swiper item template for rendering
-     * @param  $template   Template content
+     * @param string $template   String with html template content
      */
     public function setItemTemplate($template)
     {
@@ -91,7 +95,7 @@ class TSwiper extends TElement
     
     /**
      * Set item min height
-     * @param $height min height
+     * @param int $height min height
      */
     public function setItemHeight($height)
     {
@@ -100,7 +104,7 @@ class TSwiper extends TElement
     
     /**
      * Set swiper item template for rendering
-     * @param  $path   Template path
+     * @param string $path   HTML template file path
      */
     public function setTemplatePath($path)
     {
@@ -109,7 +113,7 @@ class TSwiper extends TElement
     
     /**
      * Set content min height
-     * @param $height min height
+     * @param int $height min height
      */
     public function setContentHeight($height)
     {
@@ -118,6 +122,9 @@ class TSwiper extends TElement
     
     /**
      * Add breakpoint
+     * @param int $pixeslWidth Width of view to apply this breakpoint
+     * @param int $slidesPerView Number of slides per view
+     * @param int $spaceBetween Pixels width in space between slides 
      */
     public function addBreakPoint($pixelsWidth, $slidesPerView, $spaceBetween)
     {
@@ -129,7 +136,7 @@ class TSwiper extends TElement
     
     /**
      * Set direction slides
-     * @param $direction 
+     * @param string $direction Direction [ horizontal | vertical ]
      */
     public function setDirection($direction)
     {
@@ -142,6 +149,7 @@ class TSwiper extends TElement
 
     /**
      * Set effect transition
+     * @param string $effect Effect type on transition ['slide', 'fade', 'cube', 'coverflow', 'flip']
      */
     public function setEffect($effect)
     {
@@ -154,7 +162,7 @@ class TSwiper extends TElement
 
     /**
      * Set free mode option
-     * @param boolean Disable keep moving
+     * @param boolean $disableMomentum Disable keep moving
      */
     public function enableFreeMode($disableMomentum = false)
     {
@@ -179,9 +187,9 @@ class TSwiper extends TElement
     
     /**
      * Enable pagination
-     * @param string Pagination type progressbar or fraction
-     * @param boolean Clickable
-     * @param boolean Enable dinamic bullets
+     * @param string $type Pagination type ['bullets', 'fraction', 'progressbar', 'custom']
+     * @param boolean $clickable Enable click event on bullet
+     * @param boolean $dynamicBullets Enable dinamic bullets
      */
     public function enablePagination($type = 'bullets', $clickable = false, $dynamicBullets = false)
     {
@@ -201,7 +209,7 @@ class TSwiper extends TElement
     
     /**
      * Enable scrollbar
-     * @param Boolean Hide
+     * @param boolean $hide Hide scroll bar automatically
      */
     public function enableScrollbar($hide = true)
     {
@@ -211,7 +219,7 @@ class TSwiper extends TElement
     
     /**
      * Set space between slides
-     * @param  $space   Space
+     * @param int $space Pixels between slides
      */
     public function setSpaceBetween($space = 0)
     {
@@ -223,8 +231,8 @@ class TSwiper extends TElement
     
     /**
      * Set slides per view
-     * @param  $number   Number of slides per view, or 'auto'
-     * @param  $grouped   Boolean Aply same number per group
+     * @param int $number Number of slides per view, or 'auto'
+     * @param boolean $grouped Aply same number per group
      */
     public function setSlidesPerView($number, $grouped = false)
     {
@@ -240,7 +248,7 @@ class TSwiper extends TElement
     
     /**
      * Set speed duration
-     * @param  $miliseconds Duration of transition between slides
+     * @param int $miliseconds Duration of transition between slides
      */
     public function setSpeed($miliseconds)
     {
@@ -252,7 +260,7 @@ class TSwiper extends TElement
     
     /**
      * Set slides per column // with bug
-     * @param  $number   Number of slides per column
+     * @param int $number Number of slides per column
      */
     public function setSlidesPerColumn($number)
     {
@@ -262,9 +270,9 @@ class TSwiper extends TElement
         }
     }
 
-    /*
+    /**
      * Set Centered slides
-     * @param $bounds Boolean with the bounds option
+     * @param boolean $bounds Boolean with the bounds option
      */
     public function centerSlides($bounds = false)
     {
@@ -274,89 +282,12 @@ class TSwiper extends TElement
             $this->setOption('centeredSlidesBounds', $bounds);
         }
     }
-
-    /**
-     * Render item
-     */
-    private function renderItem($item)
-    {
-        if (!empty($this->templatePath))
-        {
-            $html = new THtmlRenderer($this->templatePath);
-            $html->enableSection('main');
-            $html->enableTranslation();
-            $html = AdiantiTemplateHandler::replace($html->getContents(), $item);
-            
-            return $html;
-        }
-
-        $item_wrapper = new TElement('div');
-        $item_wrapper->{'class'} = 'swiper-slide';
-
-        if (!empty($this->itemTemplate))
-        {
-            $item_content = new TElement('div');
-            $item_template = ApplicationTranslator::translateTemplate($this->itemTemplate);
-            $item_template = AdiantiTemplateHandler::replace($item_template, $item);
-            $item_content->add($item_template);
-        }
-        
-        if (!empty($item_content))
-        {
-            $item_wrapper->add($item_content);
-            
-            if (!empty($this->contentHeight))
-            {
-                $item_content->{'style'}   = 'min-height:'.$this->contentHeight;
-                
-                if (strstr($this->size, '%') !== FALSE)
-                {
-                    $item_content->{'style'}   = 'min-height:'.$this->contentHeight;
-                }
-                else
-                {
-                    $item_content->{'style'}   = 'min-height:'.$this->contentHeight.'px';
-                }
-            }
-        }
-
-        if (!empty($this->itemHeight))
-        {
-            $item_wrapper->{'style'}   = 'min-height:'.$this->itemHeight;
-            
-            if (strstr($this->size, '%') !== FALSE)
-            {
-                $item_wrapper->{'style'}   = 'min-height:'.$this->itemHeight;
-            }
-            else
-            {
-                $item_wrapper->{'style'}   = 'min-height:'.$this->itemHeight.'px';
-            }
-        }
-
-        return $item_wrapper;
-
-    }
     
     /**
      * Show the callendar and execute required scripts
      */
     public function show()
     {
-        $id = $this->{'id'};
-
-        $wrapper = new TElement('div');
-        $wrapper->{'class'} = 'swiper-wrapper';
-
-        parent::add($wrapper);
-
-        if($this->items)
-        {
-            foreach ($this->items as $item)
-            {
-                $wrapper->add($this->renderItem($item));
-            }
-        }
 
         if($this->pagination)
         {

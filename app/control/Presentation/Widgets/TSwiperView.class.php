@@ -25,10 +25,11 @@ class TSwiperView extends TPage
         //$swiper->setContentHeight(300);
         $swiper->setSlidesPerView(3, true);
         $swiper->setSpaceBetween(15);
-        $swiper->enableFreeMode();
-        //$swiper->enablePagination();
+        //$swiper->enableFreeMode();
+        $swiper->enablePagination();
         //$swiper->centerSlides();
         //$swiper->setEffect('flip');
+        $swiper->{'style'} = 'height: 200px';
 
         $items = [];
         $items[] = (object) ['content' => 'Slide 1 <br> A'];
@@ -42,12 +43,14 @@ class TSwiperView extends TPage
         $items[] = (object) ['content' => 'Slide 9 <br> I'];
         $items[] = (object) ['content' => 'Slide 10 <br> J'];
 
+        $template = '<b>teste</b><br>{content}';
+
         foreach($items as $key => $item)
         {
-            $swiper->addItem($item);
+            $swiper->addItem($item, $template);
         }
 
-        $swiper->setItemTemplate('<b>teste</b><br>{content}');
+        $swiper->setItemTemplate($template);
 
         // wrap the page content using vertical box
         $vbox = new TVBox;
