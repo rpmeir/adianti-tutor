@@ -1,12 +1,9 @@
 <?php
 namespace Adianti\Widget\Util;
 
-use Adianti\Util\AdiantiTemplateHandler;
 use Adianti\Widget\Base\TElement;
 use Adianti\Widget\Base\TScript;
 use Adianti\Widget\Base\TStyle;
-use Adianti\Widget\Template\THtmlRenderer;
-use ApplicationTranslator;
 
 /**
  * TSwiper Widget
@@ -111,15 +108,6 @@ class TSwiper extends TElement
     public function setTemplatePath($path)
     {
         $this->templatePath = $path;
-    }
-    
-    /**
-     * Set content min height
-     * @param int $height min height
-     */
-    public function setContentHeight($height)
-    {
-        $this->contentHeight = $height;
     }
     
     /**

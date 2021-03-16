@@ -45,13 +45,13 @@ class TSwiperView extends TPage
 
         $template = '<b>teste</b><br>{content}';
 
+        $swiper->setItemTemplate($template);
+
         foreach($items as $key => $item)
         {
-            $swiperitem = $swiper->addItem($item, $template);
+            $swiperitem = $swiper->addItem($item);
             $swiperitem->{'style'} = 'border: solid 1px #ddd;border-radius: 4px';
         }
-
-        $swiper->setItemTemplate($template);
 
         // wrap the page content using vertical box
         $vbox = new TVBox;
