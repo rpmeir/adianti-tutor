@@ -47,7 +47,8 @@ class TSwiperView extends TPage
 
         foreach($items as $key => $item)
         {
-            $swiper->addItem($item, $template);
+            $swiperitem = $swiper->addItem($item, $template);
+            $swiperitem->{'style'} = 'border: solid 1px #ddd;border-radius: 4px';
         }
 
         $swiper->setItemTemplate($template);

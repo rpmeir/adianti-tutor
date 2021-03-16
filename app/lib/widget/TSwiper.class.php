@@ -22,9 +22,7 @@ class TSwiper extends TElement
     private $wrapper;
     private $templatePath;
     private $itemTemplate;
-    private $itemHeight;
-    private $contentHeight;
-    private $pagination; // position bug on progressbar type, should stay on top
+    private $pagination; // position bug on progressbar type, should stay on top of wrapper
     private $arrows; // minimal position bug on prev button
     private $scrollbar;
     private $breakpoints;
@@ -76,12 +74,16 @@ class TSwiper extends TElement
      * @param object $object Item data object
      * @param string $template String with html template
      * @param string $path String with path of html file template
+     * @return object Instance of SwiperItem
      */
     public function addItem($object, $template = '', $path = '')
     {
         $html_emplate = !empty($template) ? $template : $this->itemTemplate;
         $file_path = !empty($path) ? $path : $this->templatePath;
-        $this->wrapper->add(new TSwiperItem($object, $html_emplate, $file_path));
+        $swiperItem = new TSwiperItem($object, $html_emplate, $file_path);
+        $this->wrapper->add($swiperItem);
+
+        return $swiperItem;
     }
     
     /**
