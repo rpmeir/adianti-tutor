@@ -38,4 +38,9 @@ class ModalWindowView extends TWindow
         
         parent::add($this->html);            
     }
+
+    public function onSelect()
+    {
+
+    }
 }
