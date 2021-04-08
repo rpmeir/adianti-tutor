@@ -1,4 +1,8 @@
 <?php
+
+use Adianti\Control\TWindow;
+use Adianti\Widget\Template\THtmlRenderer;
+
 /**
  * SingleWindowView
  *
