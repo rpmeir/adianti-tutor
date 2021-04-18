@@ -22,13 +22,13 @@ class TSwiperView extends TPage
 		parent::__construct();
 		
 		$swiper = new TSwiper();
-        //$swiper->setContentHeight(300);
-        $swiper->setSlidesPerView(3, true);
+        $swiper->setSlidesPerView(2, true);
         $swiper->setSpaceBetween(15);
-        //$swiper->enableFreeMode();
+        $swiper->enableFreeMode();
         $swiper->enablePagination();
         //$swiper->centerSlides();
         //$swiper->setEffect('flip');
+        //$swiper->setDirection('vertical');
         $swiper->{'style'} = 'height: 200px';
 
         $items = [];
