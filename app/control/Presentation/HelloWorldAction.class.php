@@ -1,5 +1,9 @@
-<?php 
-class HelloWorldAction extends TPage 
+<?php
+
+use Adianti\Control\TPage;
+use Adianti\Widget\Form\TLabel;
+
+class HelloWorldAction extends TPage
 { 
     public function __construct() 
     { 

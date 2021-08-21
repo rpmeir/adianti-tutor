@@ -32,7 +32,7 @@ class TSwiper extends TElement
     {
         parent::__construct('div');
         $this->{'class'} = 'tswiper';
-        $this->{'id'}    = 'tswiper_' . mt_rand(1000000000, 1999999999);
+        $this->{'id'} = 'tswiper_' . mt_rand(1000000000, 1999999999);
         $this->items = [];
         $this->pagination = FALSE;
         $this->arrows = FALSE;
@@ -164,50 +164,6 @@ class TSwiper extends TElement
     }
     
     /**
-     * Enable arrows
-     */
-    public function enableArrows()
-    {
-        $this->arrows = TRUE;
-        $this->setOption('navigation', [
-            'nextEl' => '.swiper-button-next', 
-            'prevEl' => '.swiper-button-prev'
-        ]);
-    }
-    
-    /**
-     * Enable pagination
-     * @param string $type Pagination type ['bullets', 'fraction', 'progressbar', 'custom']
-     * @param boolean $clickable Enable click event on bullet
-     * @param boolean $dynamicBullets Enable dinamic bullets
-     */
-    public function enablePagination($type = 'bullets', $clickable = false, $dynamicBullets = false)
-    {
-        $this->pagination = TRUE;
-
-        $opt = [];
-        $allowedTypes = ['bullets', 'fraction', 'progressbar', 'custom'];
-
-        $opt['el'] = '.swiper-pagination';
-
-        $opt['type'] = in_array($type, $allowedTypes) ? $type : null;
-        $opt['clickable'] = $clickable;
-        $opt['dynamicBullets'] = $dynamicBullets;
-
-        $this->setOption('pagination', $opt);
-    }
-    
-    /**
-     * Enable scrollbar
-     * @param boolean $hide Hide scroll bar automatically
-     */
-    public function enableScrollbar($hide = true)
-    {
-        $this->scrollbar = TRUE;
-        $this->setOption('scrollbar', [ 'el' => '.swiper-scrollbar', 'hide' => $hide ]);
-    }
-    
-    /**
      * Set space between slides
      * @param int $space Pixels between slides
      */
@@ -274,15 +230,65 @@ class TSwiper extends TElement
     }
     
     /**
+     * Enable arrows
+     */
+    public function enableArrows()
+    {
+        $this->arrows = TRUE;
+        $this->setOption('navigation', [
+            'nextEl' => '#swiper-button-next_' . mt_rand(1000000000, 1999999999), 
+            'prevEl' => '#swiper-button-prev_' . mt_rand(1000000000, 1999999999)
+        ]);
+    }
+    
+    /**
+     * Enable scrollbar
+     * @param boolean $hide Hide scroll bar automatically
+     */
+    public function enableScrollbar($hide = true)
+    {
+        $this->scrollbar = TRUE;
+        $this->setOption('scrollbar', [ 
+            'el' => '#swiper-scrollbar_' . mt_rand(1000000000, 1999999999), 
+            'hide' => $hide 
+        ]);
+    }
+    
+    /**
+     * Enable pagination
+     * @param string $type Pagination type ['bullets', 'fraction', 'progressbar', 'custom']
+     * @param boolean $clickable Enable click event on bullet
+     * @param boolean $dynamicBullets Enable dinamic bullets
+     */
+    public function enablePagination($type = 'bullets', $clickable = false, $dynamicBullets = false)
+    {
+        $this->pagination = TRUE;
+
+        $opt = [];
+        $allowedTypes = ['bullets', 'fraction', 'progressbar', 'custom'];
+
+        $opt['el'] = '#swiper-pagination_' . mt_rand(1000000000, 1999999999);
+
+        $opt['type'] = in_array($type, $allowedTypes) ? $type : null;
+        $opt['clickable'] = $clickable;
+        $opt['dynamicBullets'] = $dynamicBullets;
+
+        $this->setOption('pagination', $opt);
+    }
+    
+    /**
      * Show the callendar and execute required scripts
      */
     public function show()
     {
 
+        $options = $this->options;
+
         if($this->pagination)
         {
             $page = new TElement('div');
             $page->{'class'} = 'swiper-pagination';
+            $page->{'id'} = substr($options['pagination']['el'], 1);
             parent::add($page);
         }
 
@@ -290,9 +296,11 @@ class TSwiper extends TElement
         {
             $prev = new TElement('div');
             $prev->{'class'} = 'swiper-button-prev';
+            $prev->{'id'} = substr($options['navigation']['prevEl'], 1);
             parent::add($prev);
             $next = new TElement('div');
             $next->{'class'} = 'swiper-button-next';
+            $next->{'id'} = substr($options['navigation']['nextEl'], 1);
             parent::add($next);
         }
 
@@ -300,6 +308,8 @@ class TSwiper extends TElement
         {
             $scrl = new TElement('div');
             $scrl->{'class'} = 'swiper-scrollbar';
+            $scrl->{'id'} = substr($options['scrollbar']['el'], 1);
+            $scrl->{'style'} = 'margin-top: 8px;';
             parent::add($scrl);
         }
 
@@ -313,7 +323,7 @@ class TSwiper extends TElement
 
         TStyle::importFromFile('app/lib/include/tswiper/tswiper.css');
 
-        TScript::create("$(function(){var swiper = new Swiper('.tswiper', $options);});");
+        TScript::create("$(function(){var swiper = new Swiper('#$this->id', $options);});");
 
         parent::show();
     }

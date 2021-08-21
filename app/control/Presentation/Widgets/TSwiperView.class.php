@@ -20,16 +20,6 @@ class TSwiperView extends TPage
 	public function __construct()
 	{
 		parent::__construct();
-		
-		$swiper = new TSwiper();
-        $swiper->setSlidesPerView(2, true);
-        $swiper->setSpaceBetween(15);
-        $swiper->enableFreeMode();
-        $swiper->enablePagination();
-        //$swiper->centerSlides();
-        //$swiper->setEffect('flip');
-        //$swiper->setDirection('vertical');
-        $swiper->{'style'} = 'height: 200px';
 
         $items = [];
         $items[] = (object) ['content' => 'Slide 1 <br> A'];
@@ -44,12 +34,42 @@ class TSwiperView extends TPage
         $items[] = (object) ['content' => 'Slide 10 <br> J'];
 
         $template = '<b>teste</b><br>{content}';
-
+		
+		$swiper = new TSwiper();
+        $swiper->enablePagination();
+        $swiper->centerSlides();
+        $swiper->setEffect('flip');
+        $swiper->{'style'} = 'height: 200px;width:300px;margin:25px auto;';
         $swiper->setItemTemplate($template);
-
         foreach($items as $key => $item)
         {
             $swiperitem = $swiper->addItem($item);
+            $swiperitem->{'style'} = 'border: solid 1px #ddd;border-radius: 4px';
+        }
+		
+		$swiper2 = new TSwiper();
+        $swiper2->setSlidesPerView(3, true);
+        $swiper2->setSpaceBetween(15);
+        $swiper2->enableScrollbar();
+        $swiper2->{'style'} = 'height: 200px;margin:25px auto;';
+        $swiper2->setItemTemplate($template);
+        foreach($items as $key => $item)
+        {
+            $swiperitem = $swiper2->addItem($item);
+            $swiperitem->{'style'} = 'border: solid 1px #ddd;border-radius: 4px';
+        }
+		
+		$swiper3 = new TSwiper();
+        $swiper3->setSlidesPerView(4, true);
+        $swiper3->setSpaceBetween(15);
+        $swiper3->enableFreeMode();
+        $swiper3->enablePagination();
+        $swiper3->centerSlides();
+        $swiper3->{'style'} = 'height: 200px;margin:25px auto;';
+        $swiper3->setItemTemplate($template);
+        foreach($items as $key => $item)
+        {
+            $swiperitem = $swiper3->addItem($item);
             $swiperitem->{'style'} = 'border: solid 1px #ddd;border-radius: 4px';
         }
 
@@ -58,6 +78,8 @@ class TSwiperView extends TPage
         $vbox->style = 'width: 100%';
         $vbox->add(new TXMLBreadCrumb('menu.xml', __CLASS__));
         $vbox->add($swiper);
+        $vbox->add($swiper2);
+        $vbox->add($swiper3);
 
         parent::add($vbox);
 	}

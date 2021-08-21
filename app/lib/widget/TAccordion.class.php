@@ -1,4 +1,9 @@
 <?php
+
+use Adianti\Widget\Base\TElement;
+use Adianti\Widget\Base\TScript;
+use Adianti\Widget\Base\TStyle;
+
 /**
  * TAccordion Container
  * Copyright (c) 2006-2010 Pablo Dall'Oglio
