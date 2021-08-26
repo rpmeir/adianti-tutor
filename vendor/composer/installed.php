@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => '5998eb524542c73576ee17ef19940edd3a79c165',
+    'reference' => '8caeb40caa353d91479453a4943641b2b963d693',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => '5998eb524542c73576ee17ef19940edd3a79c165',
+      'reference' => '8caeb40caa353d91479453a4943641b2b963d693',
     ),
     'adianti/pdfdesigner' => 
     array (
@@ -126,12 +126,12 @@
     ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v6.1.8',
-      'version' => '6.1.8.0',
+      'pretty_version' => 'v6.5.1',
+      'version' => '6.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '917ab212fa00dc6eacbb26e8bc387ebe40993bc1',
+      'reference' => 'dd803df5ad7492e1b40637f7ebd258fee5ca7355',
     ),
     'phprtflite/phprtflite' => 
     array (
