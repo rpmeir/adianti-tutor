@@ -1,3 +1,26 @@
+# TSwiper
+
+TSwiper is a widget component based on [Swiper](https://swiperjs.com/) to be used in the [Adianti Framework](https://www.adianti.com.br/framework).
+
+Providing touch slider functionality and complementing the existing components in the framework.
+
+It consists of two classes that contain properties and methods that generate the options passed in the initialization of the Swiper component.
+
+## Installing TSwiper
+> Install only in Adianti Framework
+
+Via composer
+
+```bash
+composer require "rpmeir/tswiper:v1.0.0"
+```
+
+## Example
+
+<img src="https://raw.githubusercontent.com/rpmeir/tswiper/main/assets/tswiper-example.gif">
+
+## How to use
+```php
 <?php
 
 use Rpmeir\TSwiper\TSwiper;
@@ -86,3 +109,8 @@ class TSwiperView extends TPage
 	}
     
 }
+
+```
+
+## To do
+* Integrate TSwiperItem with the TAction class

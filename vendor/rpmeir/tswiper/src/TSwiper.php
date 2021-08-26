@@ -1,5 +1,5 @@
 <?php
-namespace Adianti\Widget\Util;
+namespace Rpmeir\TSwiper;
 
 use Adianti\Widget\Base\TElement;
 use Adianti\Widget\Base\TScript;
@@ -8,9 +8,8 @@ use Adianti\Widget\Base\TStyle;
 /**
  * TSwiper Widget
  *
- * @version    7.3
- * @package    widget
- * @subpackage util
+ * @version    v1.0.0
+ * @package    tswiper
  * @author     Rodrigo Pires Meira
  */
 class TSwiper extends TElement
@@ -321,9 +320,13 @@ class TSwiper extends TElement
 
         $options = json_encode($this->options);
 
-        TStyle::importFromFile('app/lib/include/tswiper/tswiper.css');
+        TStyle::importFromFile('vendor/rpmeir/tswiper/src/lib/css/swiper-bundle.min.css');
+        TScript::importFromFile('vendor/rpmeir/tswiper/src/lib/js/swiper-bundle.min.js');
 
-        TScript::create("$(function(){var swiper = new Swiper('#$this->id', $options);});");
+        TStyle::importFromFile('vendor/rpmeir/tswiper/src/lib/css/tswiper.css');
+
+        // Sets 500 ms timeout to load dependencies 
+        TScript::create("$(function(){var swiper = new Swiper('#$this->id', $options);});", true, 500);
 
         parent::show();
     }

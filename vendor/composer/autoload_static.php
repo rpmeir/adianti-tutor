@@ -11,6 +11,10 @@ class ComposerStaticInit9ca02ded2ffb55c884817c3c88c86343
         array (
             'Svg\\' => 4,
         ),
+        'R' => 
+        array (
+            'Rpmeir\\TSwiper\\' => 15,
+        ),
         'P' => 
         array (
             'Picqer\\Barcode\\' => 15,
@@ -39,6 +43,10 @@ class ComposerStaticInit9ca02ded2ffb55c884817c3c88c86343
         'Svg\\' => 
         array (
             0 => __DIR__ . '/..' . '/phenx/php-svg-lib/src/Svg',
+        ),
+        'Rpmeir\\TSwiper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rpmeir/tswiper/src',
         ),
         'Picqer\\Barcode\\' => 
         array (

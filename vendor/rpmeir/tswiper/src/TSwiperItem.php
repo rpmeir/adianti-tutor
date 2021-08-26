@@ -1,5 +1,5 @@
 <?php
-namespace Adianti\Widget\Util;
+namespace Rpmeir\TSwiper;
 
 use Adianti\Util\AdiantiTemplateHandler;
 use Adianti\Widget\Base\TElement;
@@ -7,11 +7,10 @@ use Adianti\Widget\Template\THtmlRenderer;
 use ApplicationTranslator;
 
 /**
- * TSwiper Widget
+ * TSwiperItem Widget
  *
- * @version    7.3
- * @package    widget
- * @subpackage util
+ * @version    v1.0.0
+ * @package    tswiper
  * @author     Rodrigo Pires Meira
  */
 class TSwiperItem extends TElement

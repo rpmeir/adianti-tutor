@@ -755,6 +755,51 @@
             "install-path": "../picqer/php-barcode-generator"
         },
         {
+            "name": "rpmeir/tswiper",
+            "version": "v1.0.0",
+            "version_normalized": "1.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/rpmeir/tswiper.git",
+                "reference": "aa68ab6be7aa761740a805d2f869f2e390690f89"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/rpmeir/tswiper/zipball/aa68ab6be7aa761740a805d2f869f2e390690f89",
+                "reference": "aa68ab6be7aa761740a805d2f869f2e390690f89",
+                "shasum": ""
+            },
+            "time": "2021-08-26T03:10:48+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Rpmeir\\TSwiper\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rodrigo Pires Meira",
+                    "email": "rpmeir@gmail.com"
+                }
+            ],
+            "description": "TSwiper plugin for using the javascript swiper library in Adianti Framework",
+            "homepage": "https://github.com/rpmeir/tswiper",
+            "keywords": [
+                "adianti",
+                "swiper"
+            ],
+            "support": {
+                "issues": "https://github.com/rpmeir/tswiper/issues",
+                "source": "https://github.com/rpmeir/tswiper/tree/v1.0.0"
+            },
+            "install-path": "../rpmeir/tswiper"
+        },
+        {
             "name": "sabberworm/php-css-parser",
             "version": "8.3.1",
             "version_normalized": "8.3.1.0",

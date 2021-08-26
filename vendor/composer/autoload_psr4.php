@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Svg\\' => array($vendorDir . '/phenx/php-svg-lib/src/Svg'),
+    'Rpmeir\\TSwiper\\' => array($vendorDir . '/rpmeir/tswiper/src'),
     'Picqer\\Barcode\\' => array($vendorDir . '/picqer/php-barcode-generator/src'),
     'PHPMailer\\PHPMailer\\' => array($vendorDir . '/phpmailer/phpmailer/src'),
     'Linfo\\' => array($vendorDir . '/linfo/linfo/src/Linfo'),

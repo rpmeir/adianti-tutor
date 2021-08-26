@@ -32,7 +32,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '8caeb40caa353d91479453a4943641b2b963d693',
+    'reference' => '2ead5360eddd49d8b19f34455ba9fcc55a60656b',
     'name' => '__root__',
   ),
   'versions' => 
@@ -44,7 +44,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '8caeb40caa353d91479453a4943641b2b963d693',
+      'reference' => '2ead5360eddd49d8b19f34455ba9fcc55a60656b',
     ),
     'adianti/pdfdesigner' => 
     array (
@@ -176,6 +176,15 @@ private static $installed = array (
       array (
       ),
       'reference' => 'f754cbd592f3131af144dfcc6a3090fd0f6d1793',
+    ),
+    'rpmeir/tswiper' => 
+    array (
+      'pretty_version' => 'v1.0.0',
+      'version' => '1.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'aa68ab6be7aa761740a805d2f869f2e390690f89',
     ),
     'sabberworm/php-css-parser' => 
     array (
