@@ -143,9 +143,10 @@ class CustomerDataGridView extends TPage
         $panel->addFooter($this->pageNavigation);
         
         // header actions
-        $dropdown = new TDropDown('Export', 'fa:list');
+        $dropdown = new TDropDown('Export', 'fa:download');
         $dropdown->setButtonClass('btn btn-default waves-effect dropdown-toggle');
         $dropdown->addAction( 'Save as CSV', new TAction([$this, 'onExportCSV'], ['register_state' => 'false', 'static'=>'1']), 'fa:table fa-fw blue' );
+        $dropdown->addAction( 'Save as XLS', new TAction([$this, 'onExportXLS'], ['register_state' => 'false', 'static'=>'1']), 'fa:file-excel fa-fw purple' );
         $dropdown->addAction( 'Save as PDF', new TAction([$this, 'onExportPDF'], ['register_state' => 'false', 'static'=>'1']), 'far:file-pdf fa-fw red' );
         $dropdown->addAction( 'Save as XML', new TAction([$this, 'onExportXML'], ['register_state' => 'false', 'static'=>'1']), 'fa:code fa-fw green' );
         $panel->addHeaderWidget( $dropdown );

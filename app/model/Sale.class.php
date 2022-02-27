@@ -11,6 +11,7 @@ class Sale extends TRecord
     
     
     private $customer;
+    private $status;
     private $sale_items;
 
     /**
@@ -22,6 +23,7 @@ class Sale extends TRecord
         parent::addAttribute('date');
         parent::addAttribute('total');
         parent::addAttribute('obs');
+        parent::addAttribute('status_id');
         parent::addAttribute('customer_id');
     }
 
@@ -50,6 +52,21 @@ class Sale extends TRecord
     
         // returns the associated object
         return $this->customer;
+    }
+    
+    /**
+     * Method get_status
+     * Sample of usage: $sale->status->attribute;
+     * @returns SaleStatus instance
+     */
+    public function get_status()
+    {
+        // loads the associated object
+        if (empty($this->status))
+            $this->status = new SaleStatus($this->status_id);
+    
+        // returns the associated object
+        return $this->status;
     }
     
     /**

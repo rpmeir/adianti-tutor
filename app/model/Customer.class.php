@@ -12,6 +12,7 @@ class Customer extends TRecord
     
     const CREATEDAT = 'created_at';
     const UPDATEDAT = 'updated_at';
+    const DELETEDAT = 'deleted_at';
     
     private $category;
     private $city;

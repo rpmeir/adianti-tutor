@@ -1,11 +1,4 @@
 <?php
-
-use Adianti\Control\TPage;
-use Adianti\Widget\Base\TElement;
-use Adianti\Widget\Container\TVBox;
-use Adianti\Widget\Template\THtmlRenderer;
-use Adianti\Widget\Util\TXMLBreadCrumb;
-
 /**
  * Chart
  *

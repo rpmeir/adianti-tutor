@@ -3,7 +3,7 @@
  * SaleForm Registration
  * @author  <your name here>
  */
-class SaleForm extends TWindow
+class SaleForm extends TPage
 {
     protected $form; // form
     
@@ -14,11 +14,13 @@ class SaleForm extends TWindow
     function __construct()
     {
         parent::__construct();
-        parent::setSize(0.8, null);
+        $this->setTargetContainer('adianti_right_panel');
+        
+        /*parent::setSize(0.8, null);
         parent::removePadding();
         parent::removeTitleBar();
         parent::disableEscape();
-        
+        */
         // creates the form
         $this->form = new BootstrapFormBuilder('form_Sale');
         $this->form->setFormTitle('Sale');
@@ -88,10 +90,11 @@ class SaleForm extends TWindow
         $this->product_list->setId('products_list');
         $this->product_list->generateHiddenFields();
         $this->product_list->style = "min-width: 700px; width:100%;margin-bottom: 10px";
+        $this->product_list->setMutationAction(new TAction([$this, 'onMutationAction']));
         
         $col_uniq   = new TDataGridColumn( 'uniqid', 'Uniqid', 'center', '10%');
         $col_id     = new TDataGridColumn( 'id', 'ID', 'center', '10%');
-        $col_pid    = new TDataGridColumn( 'product_id', 'ProdID', 'center', '10%');
+        $col_pid    = new TDataGridColumn( 'product_id', 'Prd', 'center', '10%');
         $col_descr  = new TDataGridColumn( 'product_id', 'Product', 'left', '30%');
         $col_amount = new TDataGridColumn( 'amount', 'Amount', 'left', '10%');
         $col_price  = new TDataGridColumn( 'sale_price', 'Price', 'right', '15%');
@@ -340,6 +343,11 @@ class SaleForm extends TWindow
             
             $sale = new Sale;
             $sale->fromArray((array) $data);
+            
+            if (empty($sale->id))
+            {
+                $sale->status_id = SaleStatus::orderBy('id')->take(1)->first()->id;
+            }
             $sale->store();
             
             SaleItem::where('sale_id', '=', $sale->id)->delete();
@@ -378,10 +386,31 @@ class SaleForm extends TWindow
     }
     
     /**
+     *
+     */
+    public static function onMutationAction($param)
+    {
+        // Form data: $param['form_data']
+        // List data: $param['list_data']
+        //echo '<pre>';var_dump($param);
+        $total = 0;
+        
+        if ($param['list_data'])
+        {
+            foreach ($param['list_data'] as $row)
+            {
+                $total += (floatval($row['sale_price']) * floatval($row['amount']) ) - floatval($row['discount']);
+            }
+        }
+        
+        TToast::show('info', 'Novo total: <b>' . 'R$ '.number_format($total, 2, ',', '.') . '</b>', 'bottom right');
+    }
+    
+    /**
      * Closes window
      */
     public static function onClose()
     {
-        parent::closeWindow();
+        TScript::create("Template.closeRightPanel()");
     }
 }

@@ -98,6 +98,8 @@ class DocumentHtmlPdfView extends TPage
             $object->data  = 'app/output/document.pdf';
             $object->type  = 'application/pdf';
             $object->style = "width: 100%; height:calc(100% - 10px)";
+            $object->add('O navegador não suporta a exibição deste conteúdo, <a style="color:#007bff;" target=_newwindow href="'.$object->data.'"> clique aqui para baixar</a>...');
+            
             $window->add($object);
             $window->show();
         }

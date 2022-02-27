@@ -31,6 +31,7 @@ class FormStaticSelectionView extends TPage
         $radio2   = new TRadioGroup('radio2');
         $check    = new TCheckGroup('check');
         $check2   = new TCheckGroup('check2');
+        $check3   = new TCheckButton('check3');
         $combo    = new TCombo('combo');
         $combo2   = new TCombo('combo2');
         $select   = new TSelect('select');
@@ -50,6 +51,8 @@ class FormStaticSelectionView extends TPage
         $unique->setMinLength(1);
         $search->setMaxSize(3);
         $multi->setMaxSize(3);
+        $check3->setIndexValue(1);
+        $check3->setUseSwitch(true, 'blue');
         
         $items = ['a'=>'Item a', 'b'=>'Item b', 'c'=>'Item c'];
         
@@ -95,6 +98,7 @@ class FormStaticSelectionView extends TPage
         $this->form->addFields( [new TLabel('TCheckGroup:')],  [$check] );
         $this->form->addFields( [new TLabel('TRadioGroup (use button):')], [$radio2] );
         $this->form->addFields( [new TLabel('TCheckGroup (use button):')], [$check2] );
+        $this->form->addFields( [new TLabel('TCheckButton (switch):')], [$check3] );
         $this->form->addFields( [new TLabel('TCombo:')],      [$combo] );
         $this->form->addFields( [new TLabel('TCombo (with search):')], [$combo2] );
         $this->form->addFields( [new TLabel('TSelect:')],      [$select] );
@@ -120,6 +124,7 @@ class FormStaticSelectionView extends TPage
     public function onSend($param)
     {
         $data = $this->form->getData(); // optional parameter: active record class
+        //echo '<pre>';var_dump($data);echo '</pre>';
         
         // put the data back to the form
         $this->form->setData($data);
@@ -129,6 +134,7 @@ class FormStaticSelectionView extends TPage
         $message.= 'Check : ' . print_r($data->check, TRUE) . '<br>';
         $message.= 'Radio (button) : ' . $data->radio2 . '<br>';
         $message.= 'Check (button) : ' . print_r($data->check2, TRUE) . '<br>';
+        $message.= 'Check (switch) : ' . $data->check3 . '<br>';
         $message.= 'Combo : ' . $data->combo . '<br>';
         $message.= 'Combo2 : '. $data->combo2 . '<br>';
         $message.= 'Select: ' . print_r($data->select, TRUE) . '<br>';

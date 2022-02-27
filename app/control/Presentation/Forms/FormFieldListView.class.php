@@ -53,6 +53,8 @@ class FormFieldListView extends TPage
         $this->fieldlist->addField( '<b>Number</b>', $number, ['width' => '25%', 'sum' => true] );
         $this->fieldlist->addField( '<b>Date</b>',   $date,   ['width' => '25%'] );
         
+        // $this->fieldlist->setTotalUpdateAction(new TAction([$this, 'x']));
+        
         $this->fieldlist->enableSorting();
         
         $this->form->addField($combo);
@@ -130,7 +132,7 @@ class FormFieldListView extends TPage
     {
     
         TFieldList::clear('my_field_list');
-        TFieldList::addRows('my_field_list', 4);
+        TFieldList::addRows('my_field_list', 4, 100);
         
         $data = new stdClass;
         $data->combo  = [ 1,2,3,4,5 ];
@@ -142,7 +144,7 @@ class FormFieldListView extends TPage
                           date('Y-m-d', strtotime("+3 days")),
                           date('Y-m-d', strtotime("+4 days")) ];
         
-        TForm::sendData('my_form', $data, false, true, 200); // 200 ms of timeout after recreate rows!
+        TForm::sendData('my_form', $data, false, true, 400); // 400 ms of timeout after recreate rows!
     }
     
     /**

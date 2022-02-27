@@ -1,17 +1,4 @@
 <?php
-
-use Adianti\Control\TAction;
-use Adianti\Control\TPage;
-use Adianti\Widget\Container\TVBox;
-use Adianti\Widget\Form\TCombo;
-use Adianti\Widget\Form\TDate;
-use Adianti\Widget\Form\TEntry;
-use Adianti\Widget\Form\TLabel;
-use Adianti\Widget\Form\TText;
-use Adianti\Widget\Util\TXMLBreadCrumb;
-use Adianti\Widget\Wrapper\TDBUniqueSearch;
-use Adianti\Wrapper\BootstrapFormBuilder;
-
 /**
  * FormNestedBuilderView
  *

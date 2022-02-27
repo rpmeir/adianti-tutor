@@ -45,8 +45,9 @@ class FullCalendarDatabaseView extends TPage
         {
             TTransaction::open('samples');
             
-            $events = CalendarEvent::where('start_time', '>=', $param['start'])
-                                   ->where('end_time',   '<=', $param['end'])->load();
+            $events = CalendarEvent::where('start_time', '<=', $param['end'])
+                                   ->where('end_time',   '>=', $param['start'])->load();
+            
             if ($events)
             {
                 foreach ($events as $event)

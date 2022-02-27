@@ -10,7 +10,7 @@ class ExternalSystemWindowView extends TWindow
         
         $iframe = new TElement('iframe');
         $iframe->id = "iframe_external";
-        $iframe->src = "http://www.adianti.com.br/framework_files/template-material/";
+        $iframe->src = "//www.adianti.com.br/framework_files/template-material/";
         $iframe->frameborder = "0";
         $iframe->scrolling = "yes";
         $iframe->width = "100%";

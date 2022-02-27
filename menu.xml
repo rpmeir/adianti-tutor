@@ -420,10 +420,6 @@
                                 <icon>fa:search fa-fw</icon>
                                 <action>FormSeekButtonView</action>
                             </menuitem>
-                            <menuitem label='Expansão de Filtro'>
-                                <icon>fa:table fa-fw</icon>
-                                <action>ProductList</action>
-                            </menuitem>
                          </menu>
                     </menuitem>
                     <menuitem>
@@ -623,21 +619,13 @@
                         <icon>fa:arrow-circle-right fa-fw</icon>
                         <action>StepView</action>
                     </menuitem>
+                    <menuitem label='_t{Arrow steps}'>
+                        <icon>fa:arrow-circle-right fa-fw</icon>
+                        <action>ArrowStepView</action>
+                    </menuitem>
                     <menuitem label='_t{SourceCode}'>
                         <icon>fa:code fa-fw</icon>
                         <action>SourceCodeView</action>
-                    </menuitem>
-                    <menuitem label='InfoBox'>
-                        <icon>fa:info fa-fw</icon>
-                        <action>TInfoBoxView</action>
-                    </menuitem>
-                    <menuitem label='Switch'>
-                        <icon>fa:toggle-on fa-fw</icon>
-                        <action>SwitchView</action>
-                    </menuitem>
-                    <menuitem label='Swiper'>
-                        <icon>fa:th-large fa-fw</icon>
-                        <action>TSwiperView</action>
                     </menuitem>
                 </menu>
                 

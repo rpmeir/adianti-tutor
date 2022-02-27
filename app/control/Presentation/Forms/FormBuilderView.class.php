@@ -38,6 +38,9 @@ class FormBuilderView extends TPage
         $type        = new TCombo('type');
         $text        = new TText('text');
         
+        $description->setInnerIcon(new TImage('fa:user blue'), 'left');
+        //$color->setOption('components', ['opacity' => false]);
+        
         $id->setEditable(FALSE);
         $created->setMask('dd/mm/yyyy hh:ii');
         $expires->setMask('dd/mm/yyyy');

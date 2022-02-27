@@ -12,10 +12,7 @@
 
 namespace Composer;
 
-use Composer\Autoload\ClassLoader;
 use Composer\Semver\VersionParser;
-
-
 
 
 
@@ -32,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '2ead5360eddd49d8b19f34455ba9fcc55a60656b',
+    'reference' => '785e3c83a0aea5e934252886a508d3457e759ff2',
     'name' => '__root__',
   ),
   'versions' => 
@@ -44,7 +41,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '2ead5360eddd49d8b19f34455ba9fcc55a60656b',
+      'reference' => '785e3c83a0aea5e934252886a508d3457e759ff2',
     ),
     'adianti/pdfdesigner' => 
     array (
@@ -54,7 +51,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '8f8980c844caa24010ebdbb8009252402f3a8dd3',
+      'reference' => '76a371e28bfa05e31aaa9075a21b68a96032c5b0',
     ),
     'adianti/plugins' => 
     array (
@@ -77,30 +74,30 @@ private static $installed = array (
     ),
     'dompdf/dompdf' => 
     array (
-      'pretty_version' => 'v0.8.6',
-      'version' => '0.8.6.0',
+      'pretty_version' => 'v1.1.1',
+      'version' => '1.1.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'db91d81866c69a42dad1d2926f61515a1e3f42c5',
+      'reference' => 'de4aad040737a89fae2129cdeb0f79c45513128d',
     ),
     'firebase/php-jwt' => 
     array (
-      'pretty_version' => 'v5.2.0',
-      'version' => '5.2.0.0',
+      'pretty_version' => 'v5.5.1',
+      'version' => '5.5.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'feb0e820b8436873675fd3aca04f3728eb2185cb',
+      'reference' => '83b609028194aa042ea33b5af2d41a7427de80e6',
     ),
     'linfo/linfo' => 
     array (
-      'pretty_version' => 'v4.0.4',
-      'version' => '4.0.4.0',
+      'pretty_version' => 'v4.0.6',
+      'version' => '4.0.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '2cd1edf906b9ee4dbecfac7a4829d45ce9d585c0',
+      'reference' => 'aea87565d4fd1124e637581b66a41c8b86ee22bb',
     ),
     'pablodalloglio/fpdf' => 
     array (
@@ -110,7 +107,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '0339a0c546c66f975a1ac26431a62410a0a49c76',
+      'reference' => 'e1c7233cdc7c8854aa3b134762e1d349633b602a',
     ),
     'pablodalloglio/ole' => 
     array (
@@ -120,7 +117,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => 'f2c9e55125889d4106bee23ab2ecdffe29f7c0e5',
+      'reference' => 'ba03f4bd294fe5202b3e18092c1a79e67a8024ec',
     ),
     'pablodalloglio/spreadsheet_excel_writer' => 
     array (
@@ -130,7 +127,7 @@ private static $installed = array (
       array (
         0 => '9999999-dev',
       ),
-      'reference' => '4c7138aadc6a4dc3865c1aa24911cb0ddc5ea8a4',
+      'reference' => 'c7ad7feeb4fb5586fd3d35ab812ace1f1168e9ef',
     ),
     'phenx/php-font-lib' => 
     array (
@@ -152,12 +149,12 @@ private static $installed = array (
     ),
     'phpmailer/phpmailer' => 
     array (
-      'pretty_version' => 'v6.5.1',
-      'version' => '6.5.1.0',
+      'pretty_version' => 'v6.5.3',
+      'version' => '6.5.3.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'dd803df5ad7492e1b40637f7ebd258fee5ca7355',
+      'reference' => 'baeb7cde6b60b1286912690ab0693c7789a31e71',
     ),
     'phprtflite/phprtflite' => 
     array (
@@ -170,21 +167,12 @@ private static $installed = array (
     ),
     'picqer/php-barcode-generator' => 
     array (
-      'pretty_version' => 'v0.2.2',
-      'version' => '0.2.2.0',
+      'pretty_version' => 'v2.0.1',
+      'version' => '2.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'f754cbd592f3131af144dfcc6a3090fd0f6d1793',
-    ),
-    'rpmeir/tswiper' => 
-    array (
-      'pretty_version' => 'v1.0.0',
-      'version' => '1.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'aa68ab6be7aa761740a805d2f869f2e390690f89',
+      'reference' => '16c51a795454198500cdfb4f82de288945af3960',
     ),
     'sabberworm/php-css-parser' => 
     array (
@@ -206,8 +194,6 @@ private static $installed = array (
     ),
   ),
 );
-private static $canGetVendors;
-private static $installedByVendor = array();
 
 
 
@@ -217,16 +203,7 @@ private static $installedByVendor = array();
 
 public static function getInstalledPackages()
 {
-$packages = array();
-foreach (self::getInstalled() as $installed) {
-$packages[] = array_keys($installed['versions']);
-}
-
-if (1 === \count($packages)) {
-return $packages[0];
-}
-
-return array_keys(array_flip(\call_user_func_array('array_merge', $packages)));
+return array_keys(self::$installed['versions']);
 }
 
 
@@ -239,13 +216,7 @@ return array_keys(array_flip(\call_user_func_array('array_merge', $packages)));
 
 public static function isInstalled($packageName)
 {
-foreach (self::getInstalled() as $installed) {
-if (isset($installed['versions'][$packageName])) {
-return true;
-}
-}
-
-return false;
+return isset(self::$installed['versions'][$packageName]);
 }
 
 
@@ -280,29 +251,25 @@ return $provided->matches($constraint);
 
 public static function getVersionRanges($packageName)
 {
-foreach (self::getInstalled() as $installed) {
-if (!isset($installed['versions'][$packageName])) {
-continue;
+if (!isset(self::$installed['versions'][$packageName])) {
+throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
 }
 
 $ranges = array();
-if (isset($installed['versions'][$packageName]['pretty_version'])) {
-$ranges[] = $installed['versions'][$packageName]['pretty_version'];
+if (isset(self::$installed['versions'][$packageName]['pretty_version'])) {
+$ranges[] = self::$installed['versions'][$packageName]['pretty_version'];
 }
-if (array_key_exists('aliases', $installed['versions'][$packageName])) {
-$ranges = array_merge($ranges, $installed['versions'][$packageName]['aliases']);
+if (array_key_exists('aliases', self::$installed['versions'][$packageName])) {
+$ranges = array_merge($ranges, self::$installed['versions'][$packageName]['aliases']);
 }
-if (array_key_exists('replaced', $installed['versions'][$packageName])) {
-$ranges = array_merge($ranges, $installed['versions'][$packageName]['replaced']);
+if (array_key_exists('replaced', self::$installed['versions'][$packageName])) {
+$ranges = array_merge($ranges, self::$installed['versions'][$packageName]['replaced']);
 }
-if (array_key_exists('provided', $installed['versions'][$packageName])) {
-$ranges = array_merge($ranges, $installed['versions'][$packageName]['provided']);
+if (array_key_exists('provided', self::$installed['versions'][$packageName])) {
+$ranges = array_merge($ranges, self::$installed['versions'][$packageName]['provided']);
 }
 
 return implode(' || ', $ranges);
-}
-
-throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
 }
 
 
@@ -311,19 +278,15 @@ throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed
 
 public static function getVersion($packageName)
 {
-foreach (self::getInstalled() as $installed) {
-if (!isset($installed['versions'][$packageName])) {
-continue;
+if (!isset(self::$installed['versions'][$packageName])) {
+throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
 }
 
-if (!isset($installed['versions'][$packageName]['version'])) {
+if (!isset(self::$installed['versions'][$packageName]['version'])) {
 return null;
 }
 
-return $installed['versions'][$packageName]['version'];
-}
-
-throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
+return self::$installed['versions'][$packageName]['version'];
 }
 
 
@@ -332,19 +295,15 @@ throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed
 
 public static function getPrettyVersion($packageName)
 {
-foreach (self::getInstalled() as $installed) {
-if (!isset($installed['versions'][$packageName])) {
-continue;
+if (!isset(self::$installed['versions'][$packageName])) {
+throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
 }
 
-if (!isset($installed['versions'][$packageName]['pretty_version'])) {
+if (!isset(self::$installed['versions'][$packageName]['pretty_version'])) {
 return null;
 }
 
-return $installed['versions'][$packageName]['pretty_version'];
-}
-
-throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
+return self::$installed['versions'][$packageName]['pretty_version'];
 }
 
 
@@ -353,19 +312,15 @@ throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed
 
 public static function getReference($packageName)
 {
-foreach (self::getInstalled() as $installed) {
-if (!isset($installed['versions'][$packageName])) {
-continue;
+if (!isset(self::$installed['versions'][$packageName])) {
+throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
 }
 
-if (!isset($installed['versions'][$packageName]['reference'])) {
+if (!isset(self::$installed['versions'][$packageName]['reference'])) {
 return null;
 }
 
-return $installed['versions'][$packageName]['reference'];
-}
-
-throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed');
+return self::$installed['versions'][$packageName]['reference'];
 }
 
 
@@ -374,9 +329,7 @@ throw new \OutOfBoundsException('Package "' . $packageName . '" is not installed
 
 public static function getRootPackage()
 {
-$installed = self::getInstalled();
-
-return $installed[0]['root'];
+return self::$installed['root'];
 }
 
 
@@ -411,33 +364,5 @@ return self::$installed;
 public static function reload($data)
 {
 self::$installed = $data;
-self::$installedByVendor = array();
-}
-
-
-
-
-
-private static function getInstalled()
-{
-if (null === self::$canGetVendors) {
-self::$canGetVendors = method_exists('Composer\Autoload\ClassLoader', 'getRegisteredLoaders');
-}
-
-$installed = array();
-
-if (self::$canGetVendors) {
-foreach (ClassLoader::getRegisteredLoaders() as $vendorDir => $loader) {
-if (isset(self::$installedByVendor[$vendorDir])) {
-$installed[] = self::$installedByVendor[$vendorDir];
-} elseif (is_file($vendorDir.'/composer/installed.php')) {
-$installed[] = self::$installedByVendor[$vendorDir] = require $vendorDir.'/composer/installed.php';
-}
-}
-}
-
-$installed[] = self::$installed;
-
-return $installed;
 }
 }

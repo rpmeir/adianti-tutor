@@ -54,7 +54,7 @@ CREATE TABLE customer (
   email VARCHAR(200), 
   gender CHAR(1), 
   category_id INTEGER NOT NULL, 
-  city_id INTEGER NOT NULL, created_at DATETIME, updated_at DATETIME, 
+  city_id INTEGER NOT NULL, created_at DATETIME, updated_at DATETIME, deleted_at DATETIME, 
   FOREIGN KEY(city_id)     REFERENCES city(id), 
   FOREIGN KEY(category_id) REFERENCES category(id) 
 );
@@ -140,49 +140,57 @@ CREATE TABLE product(
   unity VARCHAR(200),
   photo_path text
 );
-INSERT INTO "product" VALUES(1,'Pendrive 512Mb',10.0,57.6,'PC','files/images/1/pendrive.jpg');
-INSERT INTO "product" VALUES(2,'HD 120 GB',20.0,180.0,'PC','files/images/2/hd.jpg');
-INSERT INTO "product" VALUES(3,'SD CARD  512MB',4.0,35.0,'PC','files/images/3/sdcard.jpg');
-INSERT INTO "product" VALUES(4,'SD CARD 1GB MINI',3.0,40.0,'PC','files/images/4/sdcard.jpg');
-INSERT INTO "product" VALUES(5,'CAM. PHOTO I70 Silver',5.0,900.0,'PC','files/images/5/camera.jpg');
-INSERT INTO "product" VALUES(6,'CAM. PHOTO DSC-W50 Silver',4.0,700.0,'PC','files/images/6/camera.jpg');
-INSERT INTO "product" VALUES(7,'WEBCAM INSTANT VF0040SP',4.0,80.0,'PC','files/images/7/webcam.jpg');
-INSERT INTO "product" VALUES(8,'CPU 775 CEL.D 360 3.46 533M',10.0,300.0,'PC',NULL);
-INSERT INTO "product" VALUES(9,'Recorder DCR-DVD108',2.0,1400.0,'PC',NULL);
-INSERT INTO "product" VALUES(10,'HD IDE  80G 7.200',8.0,160.0,'PC','files/images/10/hd.jpg');
-INSERT INTO "product" VALUES(11,'Printer LASERJET 1018 USB 2.0',4.0,300.0,'PC','images/printer.jpg');
-INSERT INTO "product" VALUES(12,'DDR 512MB 400MHZ PC3200',10.0,100.0,'PC',NULL);
-INSERT INTO "product" VALUES(13,'DDR2 1024MB 533MHZ PC4200',5.0,170.0,'PC',NULL);
-INSERT INTO "product" VALUES(14,'MONITOR LCD 19',2.0,800.0,'PC','images/monitor.jpg');
-INSERT INTO "product" VALUES(15,'MOUSE USB OMC90S OPT.',10.0,40.0,'PC','images/mouse.jpg');
-INSERT INTO "product" VALUES(16,'NB DV6108 CS 1.86/512/80/DVD',2.0,2500.0,'PC',NULL);
-INSERT INTO "product" VALUES(17,'NB N220E/B DC 1.6/1/80/DVD',3.0,3400.0,'PC',NULL);
-INSERT INTO "product" VALUES(18,'CAM. PHOTO DSC-W90 Silver',5.0,1200.0,'PC',NULL);
-INSERT INTO "product" VALUES(19,'CART. 8767 black',20.0,50.0,'PC',NULL);
-INSERT INTO "product" VALUES(20,'CD-R TUBE DE 100 52X 700MB',20.0,60.0,'PC',NULL);
-INSERT INTO "product" VALUES(21,'DDR 1024MB 400MHZ PC3200',7.0,150.0,'PC',NULL);
-INSERT INTO "product" VALUES(22,'MOUSE PS2 A7 Blue',20.0,15.0,'PC','');
-INSERT INTO "product" VALUES(23,'SPEAKER AS-5100 White',5.0,180.0,'PC',NULL);
-INSERT INTO "product" VALUES(24,'Keyb. USB AK-806',14.0,40.0,'PC',NULL);
+INSERT INTO product VALUES(1,'Pendrive 512Mb',10.0,57.6,'PC','files/images/1/pendrive.jpg');
+INSERT INTO product VALUES(2,'HD 120 GB',20.0,180.0,'PC','files/images/2/hd.jpg');
+INSERT INTO product VALUES(3,'SD CARD  512MB',4.0,35.0,'PC','files/images/3/sdcard.jpg');
+INSERT INTO product VALUES(4,'SD CARD 1GB MINI',3.0,40.0,'PC','files/images/4/sdcard.jpg');
+INSERT INTO product VALUES(5,'CAM. PHOTO I70 Silver',5.0,900.0,'PC','files/images/5/camera.jpg');
+INSERT INTO product VALUES(6,'CAM. PHOTO DSC-W50 Silver',4.0,700.0,'PC','files/images/6/camera.jpg');
+INSERT INTO product VALUES(7,'WEBCAM INSTANT VF0040SP',4.0,80.0,'PC','files/images/7/webcam.jpg');
+INSERT INTO product VALUES(8,'CPU 775 CEL.D 360 3.46 533M',10.0,300.0,'PC',NULL);
+INSERT INTO product VALUES(9,'Recorder DCR-DVD108',2.0,1400.0,'PC',NULL);
+INSERT INTO product VALUES(10,'HD IDE  80G 7.200',8.0,160.0,'PC','files/images/10/hd.jpg');
+INSERT INTO product VALUES(11,'Printer LASERJET 1018 USB 2.0',4.0,300.0,'PC','images/printer.jpg');
+INSERT INTO product VALUES(12,'DDR 512MB 400MHZ PC3200',10.0,100.0,'PC',NULL);
+INSERT INTO product VALUES(13,'DDR2 1024MB 533MHZ PC4200',5.0,170.0,'PC',NULL);
+INSERT INTO product VALUES(14,'MONITOR LCD 19',2.0,800.0,'PC','images/monitor.jpg');
+INSERT INTO product VALUES(15,'MOUSE USB OMC90S OPT.',10.0,40.0,'PC','images/mouse.jpg');
+INSERT INTO product VALUES(16,'NB DV6108 CS 1.86/512/80/DVD',2.0,2500.0,'PC',NULL);
+INSERT INTO product VALUES(17,'NB N220E/B DC 1.6/1/80/DVD',3.0,3400.0,'PC',NULL);
+INSERT INTO product VALUES(18,'CAM. PHOTO DSC-W90 Silver',5.0,1200.0,'PC',NULL);
+INSERT INTO product VALUES(19,'CART. 8767 black',20.0,50.0,'PC',NULL);
+INSERT INTO product VALUES(20,'CD-R TUBE DE 100 52X 700MB',20.0,60.0,'PC',NULL);
+INSERT INTO product VALUES(21,'DDR 1024MB 400MHZ PC3200',7.0,150.0,'PC',NULL);
+INSERT INTO product VALUES(22,'MOUSE PS2 A7 Blue',20.0,15.0,'PC','');
+INSERT INTO product VALUES(23,'SPEAKER AS-5100 White',5.0,180.0,'PC',NULL);
+INSERT INTO product VALUES(24,'Keyb. USB AK-806',14.0,40.0,'PC',NULL);
+
+CREATE TABLE sale_status (id int primary key, name text, color text);
+INSERT INTO sale_status VALUES(1,'Quote','#9c9c9c');
+INSERT INTO sale_status VALUES(2,'Aproved','#eba52d');
+INSERT INTO sale_status VALUES(3,'Processing','#75aaff');
+INSERT INTO sale_status VALUES(4,'Completed','#11d61e');
+
 CREATE TABLE sale (
   id INTEGER PRIMARY KEY NOT NULL,
   date date,
   total float,
   customer_id int,
   obs text,
+  status_id int references sale_status(id),
   FOREIGN KEY(customer_id) REFERENCES customer(id)
 );
 
-INSERT INTO sale VALUES(1,'2015-03-14',505.0,1,'');
-INSERT INTO sale VALUES(2,'2015-03-14',1945.0,2, '');
-INSERT INTO sale VALUES(3,'2015-03-14',4880.0,3, '');
-INSERT INTO sale VALUES(4,'2015-03-14',1060.0,4, '');
-INSERT INTO sale VALUES(5,'2015-03-14',1890.0,5, '');
-INSERT INTO sale VALUES(6,'2015-03-14',12900.0,6, '');
-INSERT INTO sale VALUES(7,'2015-03-14',620.0,7, '');
-INSERT INTO sale VALUES(8,'2015-03-14',495.0,8, '');
-INSERT INTO sale VALUES(9,'2015-10-26',79.0,1, '');
-INSERT INTO sale VALUES(10,'2015-10-26',40.0,4,'teste');
+INSERT INTO sale VALUES(1,'2015-03-14',505.0,1,'',1);
+INSERT INTO sale VALUES(2,'2015-03-14',1945.0,2, '',1);
+INSERT INTO sale VALUES(3,'2015-03-14',4880.0,3, '',2);
+INSERT INTO sale VALUES(4,'2015-03-14',1060.0,4, '',2);
+INSERT INTO sale VALUES(5,'2015-03-14',1890.0,5, '',3);
+INSERT INTO sale VALUES(6,'2015-03-14',12900.0,6, '',3);
+INSERT INTO sale VALUES(7,'2015-03-14',620.0,7, '',3);
+INSERT INTO sale VALUES(8,'2015-03-14',495.0,8, '',4);
+INSERT INTO sale VALUES(9,'2015-10-26',79.0,1, '',4);
+INSERT INTO sale VALUES(10,'2015-10-26',40.0,4,'teste',4);
 
 
 CREATE TABLE sale_item (
@@ -275,7 +283,7 @@ CREATE TABLE test (
   city_id integer references city(id),
   customer_id integer references customer(id)
 );
-CREATE TABLE IF NOT EXISTS "product_image" (id INTEGER PRIMARY KEY NOT NULL, product_id integer references product(id), image text);
+CREATE TABLE IF NOT EXISTS product_image (id INTEGER PRIMARY KEY NOT NULL, product_id integer references product(id), image text);
 INSERT INTO product_image VALUES(1,1,'files/images/1/libreoffice-oasis-text-template.png');
 INSERT INTO product_image VALUES(2,1,'files/images/1/libreoffice-oasis-web-template.png');
 CREATE TABLE kanban_item (
@@ -338,4 +346,4 @@ select
    )
    as last_date
 from
-   customer
+   customer;

@@ -11,6 +11,18 @@ volumes:
   data-tutor:
 
 services:
+  maildev:
+    image: adianti-tutor/maildev
+    build:
+      context: .
+      dockerfile: ./maildev/Dockerfile
+    ports:
+      - "1081:80"
+      - "1026:25"
+    networks:
+      backend:
+        ipv4_address: 192.168.202.14
+
   nginx:
     image: adianti-tutor/nginx
     build:
@@ -93,3 +105,4 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+

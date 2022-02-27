@@ -1,8 +1,4 @@
 <?php
-
-use Adianti\Control\TWindow;
-use Adianti\Widget\Template\THtmlRenderer;
-
 /**
  * SingleWindowView
  *
@@ -41,10 +37,5 @@ class ModalWindowView extends TWindow
         $this->html->enableSection('main', $replaces);
         
         parent::add($this->html);            
-    }
-
-    public function onSelect()
-    {
-
     }
 }

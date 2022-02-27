@@ -71,13 +71,13 @@ class TabularReportQueryView extends TPage
             $source = TTransaction::open('samples');
             
             // define the query
-            $query = "SELECT cs.id as 'id',
-                             cs.name as 'name',
-                             cs.email as 'email',
-                             cs.birthdate as 'birthdate',
-                             ct.name as 'category_name'
+            $query = 'SELECT cs.id as "id",
+                             cs.name as "name",
+                             cs.email as "email",
+                             cs.birthdate as "birthdate",
+                             ct.name as "category_name"
                        FROM  customer cs, category ct
-                      WHERE  cs.category_id = ct.id and cs.city_id = :city_id";
+                      WHERE  cs.category_id = ct.id and cs.city_id = :city_id';
             
             $rows = TDatabase::getData($source, $query, null, [ 'city_id' => $data->city_id ]);
             

@@ -365,6 +365,7 @@ class ApplicationTranslator
         $this->messages['en'][] = 'Field list events';
         $this->messages['en'][] = 'Barcode, QRCode reader';
         $this->messages['en'][] = 'Image upload and cropper';
+        $this->messages['en'][] = 'Arrow steps';
         //fim
         
         $this->messages['pt'][] = 'Arquivo não encontrado';
@@ -712,6 +713,7 @@ class ApplicationTranslator
         $this->messages['pt'][] = 'Eventos de field list';
         $this->messages['pt'][] = 'Leitor de Barcode, QRCode';
         $this->messages['pt'][] = 'Upload e ajuste de imagem';
+        $this->messages['pt'][] = 'Passos com setas';
         //fim
         
         $this->enWords = [];

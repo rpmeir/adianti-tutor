@@ -1,43 +1,4 @@
 <?php
-
-use Adianti\Control\TAction;
-use Adianti\Control\TPage;
-use Adianti\Control\TWindow;
-use Adianti\Widget\Container\TVBox;
-use Adianti\Widget\Form\TCheckGroup;
-use Adianti\Widget\Form\TColor;
-use Adianti\Widget\Form\TCombo;
-use Adianti\Widget\Form\TDate;
-use Adianti\Widget\Form\TDateTime;
-use Adianti\Widget\Form\TEntry;
-use Adianti\Widget\Form\TFile;
-use Adianti\Widget\Form\TFormSeparator;
-use Adianti\Widget\Form\THtmlEditor;
-use Adianti\Widget\Form\TIcon;
-use Adianti\Widget\Form\TLabel;
-use Adianti\Widget\Form\TMultiFile;
-use Adianti\Widget\Form\TMultiSearch;
-use Adianti\Widget\Form\TNumeric;
-use Adianti\Widget\Form\TPassword;
-use Adianti\Widget\Form\TRadioGroup;
-use Adianti\Widget\Form\TSeekButton;
-use Adianti\Widget\Form\TSelect;
-use Adianti\Widget\Form\TSlider;
-use Adianti\Widget\Form\TSpinner;
-use Adianti\Widget\Form\TText;
-use Adianti\Widget\Form\TTime;
-use Adianti\Widget\Form\TUniqueSearch;
-use Adianti\Widget\Util\TXMLBreadCrumb;
-use Adianti\Widget\Wrapper\TDBCheckGroup;
-use Adianti\Widget\Wrapper\TDBCombo;
-use Adianti\Widget\Wrapper\TDBEntry;
-use Adianti\Widget\Wrapper\TDBMultiSearch;
-use Adianti\Widget\Wrapper\TDBRadioGroup;
-use Adianti\Widget\Wrapper\TDBSeekButton;
-use Adianti\Widget\Wrapper\TDBSelect;
-use Adianti\Widget\Wrapper\TDBUniqueSearch;
-use Adianti\Wrapper\BootstrapFormBuilder;
-
 /**
  * FormComponentsView
  *
@@ -81,7 +42,6 @@ class FormComponentsView extends TPage
         $select    = new TSelect('select');
         $unique    = new TUniqueSearch('unique');
         $multi     = new TMultiSearch('multi');
-        $seek      = new TSeekButton('seek');
         
         $db_entry  = new TDBEntry('completion2', 'samples', 'Category', 'name');
         $db_check  = new TDBCheckGroup('db_check', 'samples', 'Category', 'id', '{name} ({id})', 'id');
@@ -90,7 +50,6 @@ class FormComponentsView extends TPage
         $db_select = new TDBSelect('db_select', 'samples', 'Category', 'id', '{name} ({id})',  'id');
         $db_unique = new TDBUniqueSearch('db_unique', 'samples', 'Category', 'id', 'name');
         $db_multi  = new TDBMultiSearch('db_multi', 'samples', 'Category', 'id', 'name');
-        $db_seek   = new TDBSeekButton('db_seek', 'samples', 'my_form', 'Category', 'name');
         
         $text      = new TText('text');
         $html      = new THtmlEditor('html');
@@ -115,8 +74,6 @@ class FormComponentsView extends TPage
         
         $spinner->setValue('40.4');
         $slider->setValue('40.4');
-
-        $seek->setAction(new TAction(array('TestCitySeek', 'onReload')));
         
         // multientry
         // icon
@@ -149,8 +106,6 @@ class FormComponentsView extends TPage
         
         $text->setSize('100%', 170);
         $html->setSize('100%', 170);
-
-        
         
         $this->form->appendPage('Single components');
         $this->form->addContent( [new TFormSeparator('Input components')] );
@@ -168,7 +123,6 @@ class FormComponentsView extends TPage
         $this->form->addFields( [ new TLabel('TSelect') ], [ $select ],  [ new TLabel('TDBSelect') ], [ $db_select ] );
         $this->form->addFields( [ new TLabel('TUniqueSearch') ], [ $unique ],  [ new TLabel('TDBUniqueSearch') ], [ $db_unique ] );
         $this->form->addFields( [ new TLabel('TMultiSearch') ],  [ $multi ],   [ new TLabel('TDBMultiSearch') ],  [ $db_multi ] );
-        $this->form->addFields( [ new TLabel('TSeekButton') ],  [ $seek ],   [ new TLabel('TDBSeekButton') ],  [ $db_seek ] );
         
         $this->form->appendPage('Multi line components');
         $this->form->addContent( [new TFormSeparator('Text components')] );

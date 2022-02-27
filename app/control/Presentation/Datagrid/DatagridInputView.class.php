@@ -1,8 +1,4 @@
 <?php
-
-use Adianti\Widget\Form\TCombo;
-use Adianti\Widget\Form\TEntry;
-
 /**
  * DatagridInputView
  *
@@ -27,7 +23,7 @@ class DatagridInputView extends TPage
         // creates one datagrid
         $this->datagrid = new BootstrapDatagridWrapper(new TDataGrid);
         $this->datagrid->style = 'width:100%';
-        // $this->datagrid->enablePopover('Hint', 'Type address for <b>{name}</b>');
+        $this->datagrid->enablePopover('Hint', 'Type address for <b>{name}</b>');
         $this->datagrid->disableDefaultClick();
         
         $panel = new TPanelGroup(_t('Datagrid with input fields'));
@@ -35,10 +31,10 @@ class DatagridInputView extends TPage
         $this->form->add($panel);
         
         // add the columns
+        $this->datagrid->addColumn( new TDataGridColumn('code',    'Code',    'right',  '10%') );
         $this->datagrid->addColumn( new TDataGridColumn('name',    'Name',    'left',   '30%') );
-        $this->datagrid->addColumn( new TDataGridColumn('active',  'Active',  'left',   '20%') );
         $this->datagrid->addColumn( new TDataGridColumn('address', 'Address', 'left',   '30%') );
-        $this->datagrid->addColumn( new TDataGridColumn('phone',   'Phone',   'center', '20%') );
+        $this->datagrid->addColumn( new TDataGridColumn('phone',   'Phone',   'center', '30%') );
         
         // creates the datagrid model
         $this->datagrid->createModel();
@@ -66,59 +62,47 @@ class DatagridInputView extends TPage
         
         // add an regular object to the datagrid
         $item = new StdClass;
+        $item->code     = '1';
         $item->name     = 'Aretha Franklin';
-        $item->active   = new TCombo('active1');
-        $item->active->setSize('100%');
         $item->address  = new TEntry('address1');
         $item->phone    = '1111-1111';
-        $item->active->addItems(['Sim' => 'Sim', 'Não' => 'Não']);
         $item->address->setValue('Memphis, Tennessee');
         $item->address->setSize('100%');
         $this->datagrid->addItem($item);
         $this->form->addField($item->address); // important!
-        $this->form->addField($item->active); // important!
         
         // add an regular object to the datagrid
         $item = new StdClass;
+        $item->code     = '2';
         $item->name     = 'Eric Clapton';
-        $item->active   = new TCombo('active2');
-        $item->active->setSize('100%');
         $item->address  = new TEntry('address2');
         $item->phone    = '2222-2222';
-        $item->active->addItems(['Sim' => 'Sim', 'Não' => 'Não']);
         $item->address->setValue('Ripley, Surrey');
         $item->address->setSize('100%');
         $this->datagrid->addItem($item);
         $this->form->addField($item->address); // important!
-        $this->form->addField($item->active); // important!
         
         // add an regular object to the datagrid
         $item = new StdClass;
+        $item->code     = '3';
         $item->name     = 'B.B. King';
-        $item->active   = new TCombo('active3');
-        $item->active->setSize('100%');
         $item->address  = new TEntry('address3');
         $item->phone    = '3333-3333';
-        $item->active->addItems(['Sim' => 'Sim', 'Não' => 'Não']);
         $item->address->setValue('Itta Bena, Mississippi');
         $item->address->setSize('100%');
         $this->datagrid->addItem($item);
         $this->form->addField($item->address); // important!
-        $this->form->addField($item->active); // important!
         
         // add an regular object to the datagrid
         $item = new StdClass;
+        $item->code     = '4';
         $item->name     = 'Janis Joplin';
-        $item->active   = new TCombo('active4');
-        $item->active->setSize('100%');
         $item->address  = new TEntry('address4');
         $item->phone    = '4444-4444';
-        $item->active->addItems(['Sim' => 'Sim', 'Não' => 'Não']);
         $item->address->setValue('Port Arthur, Texas');
         $item->address->setSize('100%');
         $this->datagrid->addItem($item);
         $this->form->addField($item->address); // important!
-        $this->form->addField($item->active); // important!
     }
     
     /**
@@ -135,7 +119,7 @@ class DatagridInputView extends TPage
         $message = '';
         foreach ($this->form->getFields() as $name => $field)
         {
-            if ($field instanceof TEntry || $field instanceof TCombo)
+            if ($field instanceof TEntry)
             {
                 $message .= " $name: " . $field->getValue() . '<br>';
             }

@@ -34,38 +34,50 @@ class FormSeekButtonView extends TPage
         $criteria->add(new TFilter('id', '<=', 10));
         $criteria->setProperty('order', 'id');
         
-        $product_id   = new TDBSeekButton('product_id', 'samples', 'form_seek', 'Product', 'description');
-        $product_name = new TEntry('product_name');
-        $product_id->setCriteria($criteria);
-        $product_id->setAuxiliar($product_name);
-        
         $customer_id   = new TDBSeekButton('customer_id', 'samples', 'form_seek', 'Customer', 'name');
         $customer_name = new TEntry('customer_name');
         $customer_id->setDisplayMask('{name} - {city->name} - {city->state->name}');
         $customer_id->setDisplayLabel('Informações do cliente');
         $customer_id->setAuxiliar($customer_name);
         
+        $customer_id2   = new TDBSeekButton('product_id2', 'samples', 'form_seek', 'Customer', 'name');
+        $customer_name2 = new TEntry('product_name2');
+        $customer_id2->setCriteria($criteria);
+        $customer_id2->setAuxiliar($customer_name2);
+        
+        $product_id = new TSeekButton('product_id');
+        $product_name = new TEntry('product_name');
+        
+        
+        $product_id->setAction( new TAction(['ProductSeek', 'onReload']) );
+        $product_id->setAuxiliar($product_name);
+         
         $city_name->setEditable(FALSE);
-        $product_name->setEditable(FALSE);
         $customer_name->setEditable(FALSE);
+        $customer_name2->setEditable(FALSE);
+        $product_name->setEditable(FALSE);
         
         // adjust grid layout columns
         $this->form->setColumnClasses(2, ['col-sm-3', 'col-sm-9']);
         
         // add form fields
         $this->form->addFields( [new TLabel('Standard Seek')],  [$city_id]);
-        $this->form->addFields( [new TLabel('Standard with filter')], [$product_id]);
         $this->form->addFields( [new TLabel('Standard with mask')],   [$customer_id]);
+        $this->form->addFields( [new TLabel('Standard with filter')], [$customer_id2]);
+        $this->form->addFields( [new TLabel('Custom Seek')], [$product_id]);
         
         $city_id->setSize(80);
-        $product_id->setSize(80);
         $customer_id->setSize(80);
+        $customer_id2->setSize(80);
+        $product_id->setSize(80);
+        
         $city_name->setSize('calc(100% - 120px)');
-        $product_name->setSize('calc(100% - 120px)');
         $customer_name->setSize('calc(100% - 120px)');
+        $customer_name2->setSize('calc(100% - 120px)');
+        $product_name->setSize('calc(100% - 120px)');
         $city_name->style .= ';margin-left:3px';
-        $product_name->style .= ';margin-left:3px';
         $customer_name->style .= ';margin-left:3px';
+        $customer_name2->style .= ';margin-left:3px';
         
         $this->form->addAction('Save', new TAction(array($this, 'onSave')), 'fa:save');
         

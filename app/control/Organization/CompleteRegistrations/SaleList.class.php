@@ -68,16 +68,18 @@ class SaleList extends TPage
         
         // add the search form actions
         $this->form->addAction('Find', new TAction([$this, 'onSearch']), 'fa:search');
-        $this->form->addActionLink('New',  new TAction(['SaleForm', 'onEdit']), 'fa:plus green');
+        $this->form->addActionLink('New',  new TAction(['SaleForm', 'onEdit'], ['register_state' => 'false']), 'fa:plus green');
         
         // creates a DataGrid
         $this->datagrid = new BootstrapDatagridWrapper(new TDataGrid);
         $this->datagrid->width = '100%';
+        $this->datagrid->disableDefaultClick();
         
         // creates the datagrid columns
         $column_id       = new TDataGridColumn('id', 'Id', 'center', '10%');
-        $column_date     = new TDataGridColumn('date', 'Date', 'center', '20%');
-        $column_customer = new TDataGridColumn('customer->name', 'Customer', 'left', '50%');
+        $column_date     = new TDataGridColumn('date', 'Date', 'center', '10%');
+        $column_customer = new TDataGridColumn('customer->name', 'Customer', 'left', '40%');
+        $column_status   = new TDataGridColumn('status', 'Status', 'center', '20%');
         $column_total    = new TDataGridColumn('total', 'Total', 'right', '20%');
         
         // define format function
@@ -94,7 +96,31 @@ class SaleList extends TPage
         $this->datagrid->addColumn($column_id);
         $this->datagrid->addColumn($column_date);
         $this->datagrid->addColumn($column_customer);
+        $this->datagrid->addColumn($column_status);
         $this->datagrid->addColumn($column_total);
+        
+        $column_status->setTransformer( function($value, $object, $row) {
+            $dropdown = new TDropDown($object->status->name, '');
+            $dropdown->getButton()->style .= ';color:white;border-radius:5px;background:'.$object->status->color;
+            
+            TTransaction::open('samples');
+            $statuses = SaleStatus::orderBy('id')->load();
+            foreach ($statuses as $status)
+            {
+                $params = ['id' => $object->id,
+                           'status_id' => $status->id, 
+                           'offset' => $_REQUEST['offset'] ?? 0,
+                           'limit' => $_REQUEST['limit'] ?? 10,
+                           'page' => $_REQUEST['page'] ?? 1,
+                           'first_page' => $_REQUEST['first_page'] ?? 1,
+                           'register_state' => 'false'];
+                
+                $dropdown->addAction( $status->name, new TAction([$this, 'changeStatus'], $params ), 'fas:circle  ' . $status->color );
+            }
+            TTransaction::close();
+            
+            return $dropdown;
+        });
         
         // creates the datagrid column actions
         $column_id->setAction(new TAction([$this, 'onReload']),   ['order' => 'id']);
@@ -107,7 +133,7 @@ class SaleList extends TPage
         });
 
         $action_view   = new TDataGridAction(['SaleSidePanelView', 'onView'],   ['key' => '{id}', 'register_state' => 'false'] );
-        $action_edit   = new TDataGridAction(['SaleForm', 'onEdit'],   ['key' => '{id}'] );
+        $action_edit   = new TDataGridAction(['SaleForm', 'onEdit'],   ['key' => '{id}', 'register_state' => 'false'] );
         $action_delete = new TDataGridAction([$this, 'onDelete'],   ['key' => '{id}'] );
         
         $this->datagrid->addAction($action_view, _t('View details'), 'fa:search green fa-fw');
@@ -129,5 +155,26 @@ class SaleList extends TPage
         $container->add($panel = TPanelGroup::pack('', $this->datagrid, $this->pageNavigation));
         $panel->getBody()->style = 'overflow-x:auto';
         parent::add($container);
+    }
+    
+    /**
+     *
+     */
+    public function changeStatus($param)
+    {
+        try
+        {
+            TTransaction::open('samples');
+            $sale = Sale::find($param['id']);
+            $sale->status_id = $param['status_id'];
+            $sale->store();
+            TTransaction::close();
+            
+            $this->onReload($param);
+        }
+        catch (Exception $e)
+        {
+            new TMessage('error', $e->getMessage());
+        }
     }
 }

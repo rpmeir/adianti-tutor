@@ -53,6 +53,8 @@ class FormFieldListEventsView extends TPage
         $this->fieldlist->addField( '<b>Number</b>', $number, ['width' => '25%', 'sum' => true] );
         $this->fieldlist->addField( '<b>Date</b>',   $date,   ['width' => '25%'] );
         
+        $this->fieldlist->setTotalUpdateAction(new TAction([$this, 'onTotalUpdate']));
+        
         $this->fieldlist->enableSorting();
         
         $this->form->addField($combo);
@@ -157,6 +159,28 @@ class FormFieldListEventsView extends TPage
                           date('Y-m-d', strtotime("+4 days")) ];
         
         TForm::sendData('my_form', $data, false, true, 200); // 200 ms of timeout after recreate rows!
+    }
+    
+    /**
+     * on Update Total event
+     */
+    public static function onTotalUpdate($param)
+    {
+        // echo '<pre>';
+        // var_dump($param);
+        // echo '</pre>';
+        
+        $grandtotal = 0;
+        
+        if ($param['list_data'])
+        {
+            foreach ($param['list_data'] as $row)
+            {
+                $grandtotal += floatval( str_replace(['.', ','], ['', '.'], $row['number']));
+            }
+        }        
+        
+        TToast::show('info', '<b>Total</b>: '.number_format($grandtotal,2,',','.'), 'bottom right');
     }
     
     /**
