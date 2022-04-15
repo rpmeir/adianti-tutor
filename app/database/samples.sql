@@ -1,3 +1,5 @@
+
+
 --- ORACLE: alter session set NLS_DATE_FORMAT='rrrr-mm-dd';
 CREATE TABLE category (
   id INTEGER PRIMARY KEY NOT NULL,
@@ -54,50 +56,57 @@ CREATE TABLE customer (
   email VARCHAR(200), 
   gender CHAR(1), 
   category_id INTEGER NOT NULL, 
-  city_id INTEGER NOT NULL, created_at DATETIME, updated_at DATETIME, deleted_at DATETIME, 
+  city_id INTEGER NOT NULL, 
+  created_at DATETIME, 
+  updated_at DATETIME, 
+  deleted_at DATETIME, 
   FOREIGN KEY(city_id)     REFERENCES city(id), 
   FOREIGN KEY(category_id) REFERENCES category(id) 
 );
-INSERT INTO customer VALUES(1,'Andrei Zmievski','Rua Palo Alto','10 1234-5678','1980-01-01','S','contact@gmail.com','M',2,3,NULL,'2019-05-19 16:30:06');
-INSERT INTO customer VALUES(2,'Rubens Prates','Rua Campinas, 123','84 4644-5678','1990-01-01','M','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(3,'Augusto Campos','Rua BRLinux, 343','84 1564-5345','1990-01-01','C','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(4,'Marcelio Leal','Rua Belém, 334','84 1124-3478','1990-01-01','C','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(5,'Manuel Lemos','Rua Osasco, 949','84 1164-5348','1990-01-01','M','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(6,'Fábio Locattelli','Rua Lachoda, 012','83 1223-5678','1990-01-01','M','contact@gmail.com','M',1,1,NULL,'2019-05-19 16:29:22');
-INSERT INTO customer VALUES(7,'Leonardo Soldatelli','Rua Tramandaí, 234','83 1298-5628','1990-01-01','C','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(8,'Alberto Bengoa','Rua Porto, 23','83 1323-5548','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(9,'Fábio Milani','Rua Canela, 34','83 1266-5666','1990-01-01','C','contact@gmail.com','M',1,3,NULL,NULL);
-INSERT INTO customer VALUES(10,'Huberto Meyer','Rua Orchestra, 101','83 1234-5578','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(11,'Rafael Pavin','Rua London, 34','83 1884-5338','1990-01-01','C','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(12,'Eduardo Bacchi','Rua Santa Maria, 202','83 1264-5662','1990-01-01','S','contact@gmail.com','M',1,3,NULL,NULL);
-INSERT INTO customer VALUES(13,'Luciana Menezes','Rua Porto, 12','83 1243-5658','1990-01-01','M','contact@gmail.com','F',1,2,NULL,NULL);
-INSERT INTO customer VALUES(14,'Tiago Menezes','Rua Porto, 34','83 1232-5348','1990-01-01','M','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(15,'João Hanna','Rua Porto, 55','83 1674-9878','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(16,'Camila Kist','Rua Porto, 123','83 1256-1238','1990-01-01','S','contact@gmail.com','F',1,3,NULL,NULL);
-INSERT INTO customer VALUES(17,'Sílvio Cazella','Rua Leopoldo, 46','83 1278-5238','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(18,'Vinicius Ferreira','Rua Leopoldo, 34','83 1234-3278','1990-01-01','M','contact@gmail.com','M',1,3,NULL,NULL);
-INSERT INTO customer VALUES(19,'Rafael Pitrovski','Rua Ivoti, 232','83 1784-5348','1990-01-01','M','contact@gmail.com','M',1,3,NULL,NULL);
-INSERT INTO customer VALUES(20,'Gledson de Oliveira','Rua Porto, 12','83 1984-5218','1990-01-01','C','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(21,'Vinícius Ferla','Rua Petrópolis, 90','83 1211-5228','1990-01-01','M','contact@gmail.com','M',1,3,NULL,NULL);
-INSERT INTO customer VALUES(22,'Karen Dall Oglio','Rua Porto, 12','83 1233-5558','1990-01-01','M','contact@gmail.com','F',1,2,NULL,NULL);
-INSERT INTO customer VALUES(23,'Andrigo Dametto','Rua Lachoda, 343','83 1774-5448','1990-01-01','M','contact@gmail.com','M',1,1,NULL,NULL);
-INSERT INTO customer VALUES(24,'Jéssica Käfer','Rua Lachoda, 90','83 1894-5628','1990-01-01','C','contact@gmail.com','F',1,1,NULL,NULL);
-INSERT INTO customer VALUES(25,'Ari Stopassola','Rua Canela, 123','83 1259-5631','1990-01-01','C','contact@gmail.com','M',1,3,NULL,NULL);
-INSERT INTO customer VALUES(26,'John Lennon','Rua Liverpool, 34','83 1208-5088','1990-01-01','M','contact@gmail.com','M',1,1,NULL,NULL);
-INSERT INTO customer VALUES(27,'Amadeu Weirich','Rua Teutonia, 90','83 1404-5640','1990-01-01','C','contact@gmail.com','M',1,1,NULL,NULL);
-INSERT INTO customer VALUES(28,'Julieta dos Santos','Rua Taquari, 34','83 1044-5408','1990-01-01','M','contact@gmail.com','F',1,1,NULL,NULL);
-INSERT INTO customer VALUES(29,'Ana Paula Monteiro','Rua Rocavendas, 89','83 1234-5678','1990-01-01','M','contact@gmail.com','F',1,1,NULL,NULL);
-INSERT INTO customer VALUES(30,'Ana Wolf','Rua Arroio, 23','83 1564-4578','1990-01-01','S','contact@gmail.com','F',1,1,NULL,NULL);
-INSERT INTO customer VALUES(31,'Edson Funke','Rua Moinhos, 84','51 8111-3333','1990-01-01','S','contact@gmail.com','M',1,1,NULL,NULL);
-INSERT INTO customer VALUES(32,'Luciano Greiner','Rua Porto, 34','83 1249-9498','1990-01-01','M','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(33,'Sâmara Petter','Rua Cruzeiro, 89','83 1229-2978','1990-01-01','S','contact@gmail.com','F',1,1,NULL,NULL);
-INSERT INTO customer VALUES(34,'Júlia Haubert','Rua Lachoda, 56','83 1259-5598','1990-01-01','M','contact@gmail.com','F',1,1,NULL,NULL);
-INSERT INTO customer VALUES(35,'Diego Feitosa','Rua São Paulo, 78','84 1279-9778','1990-01-01','S','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(36,'Rafael Sobis','Rua Titulos, 34','83 1236-5636','1990-01-01','M','contact@gmail.com','M',1,2,NULL,NULL);
-INSERT INTO customer VALUES(37,'Marcelo Crosara','Rua Horizonte, 89','84 1209-5098','1990-01-01','M','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(38,'Augusto dos Reis','Rua Taquari, 78','83 1252-2578','1990-01-01','C','contact@gmail.com','M',1,1,NULL,NULL);
-INSERT INTO customer VALUES(39,'Hugo Sacramento','Rua Belém, 123','84 1295-5958','1990-01-01','C','contact@gmail.com','M',1,4,NULL,NULL);
-INSERT INTO customer VALUES(40,'Giovanni Dall Oglio','Rua da Conceicao','(51) 8111-2222','2013-02-15','S','giovanni@dalloglio.net','M',1,1,NULL,'2019-05-19 16:19:18');
+
+
+INSERT INTO customer VALUES(1,'Andrei Zmievski','Rua Palo Alto','10 1234-5678','1980-01-01','S','contact@gmail.com','M',2,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(2,'Rubens Prates','Rua Campinas, 123','84 4644-5678','1990-01-01','M','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(3,'Augusto Campos','Rua BRLinux, 343','84 1564-5345','1990-01-01','C','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(4,'Marcelio Leal','Rua Belém, 334','84 1124-3478','1990-01-01','C','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(5,'Manuel Lemos','Rua Osasco, 949','84 1164-5348','1990-01-01','M','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(6,'Fábio Locattelli','Rua Lachoda, 012','83 1223-5678','1990-01-01','M','contact@gmail.com','M',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(7,'Leonardo Soldatelli','Rua Tramandaí, 234','83 1298-5628','1990-01-01','C','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(8,'Alberto Bengoa','Rua Porto, 23','83 1323-5548','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(9,'Fábio Milani','Rua Canela, 34','83 1266-5666','1990-01-01','C','contact@gmail.com','M',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(10,'Huberto Meyer','Rua Orchestra, 101','83 1234-5578','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(11,'Rafael Pavin','Rua London, 34','83 1884-5338','1990-01-01','C','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(12,'Eduardo Bacchi','Rua Santa Maria, 202','83 1264-5662','1990-01-01','S','contact@gmail.com','M',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(13,'Luciana Menezes','Rua Porto, 12','83 1243-5658','1990-01-01','M','contact@gmail.com','F',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(14,'Tiago Menezes','Rua Porto, 34','83 1232-5348','1990-01-01','M','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(15,'João Hanna','Rua Porto, 55','83 1674-9878','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(16,'Camila Kist','Rua Porto, 123','83 1256-1238','1990-01-01','S','contact@gmail.com','F',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(17,'Sílvio Cazella','Rua Leopoldo, 46','83 1278-5238','1990-01-01','S','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(18,'Vinicius Ferreira','Rua Leopoldo, 34','83 1234-3278','1990-01-01','M','contact@gmail.com','M',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(19,'Rafael Pitrovski','Rua Ivoti, 232','83 1784-5348','1990-01-01','M','contact@gmail.com','M',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(20,'Gledson de Oliveira','Rua Porto, 12','83 1984-5218','1990-01-01','C','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(21,'Vinícius Ferla','Rua Petrópolis, 90','83 1211-5228','1990-01-01','M','contact@gmail.com','M',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(22,'Karen Dall Oglio','Rua Porto, 12','83 1233-5558','1990-01-01','M','contact@gmail.com','F',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(23,'Andrigo Dametto','Rua Lachoda, 343','83 1774-5448','1990-01-01','M','contact@gmail.com','M',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(24,'Jéssica Käfer','Rua Lachoda, 90','83 1894-5628','1990-01-01','C','contact@gmail.com','F',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(25,'Ari Stopassola','Rua Canela, 123','83 1259-5631','1990-01-01','C','contact@gmail.com','M',1,3,NULL,NULL,NULL);
+INSERT INTO customer VALUES(26,'John Lennon','Rua Liverpool, 34','83 1208-5088','1990-01-01','M','contact@gmail.com','M',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(27,'Amadeu Weirich','Rua Teutonia, 90','83 1404-5640','1990-01-01','C','contact@gmail.com','M',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(28,'Julieta dos Santos','Rua Taquari, 34','83 1044-5408','1990-01-01','M','contact@gmail.com','F',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(29,'Ana Paula Monteiro','Rua Rocavendas, 89','83 1234-5678','1990-01-01','M','contact@gmail.com','F',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(30,'Ana Wolf','Rua Arroio, 23','83 1564-4578','1990-01-01','S','contact@gmail.com','F',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(31,'Edson Funke','Rua Moinhos, 84','51 8111-3333','1990-01-01','S','contact@gmail.com','M',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(32,'Luciano Greiner','Rua Porto, 34','83 1249-9498','1990-01-01','M','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(33,'Sâmara Petter','Rua Cruzeiro, 89','83 1229-2978','1990-01-01','S','contact@gmail.com','F',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(34,'Júlia Haubert','Rua Lachoda, 56','83 1259-5598','1990-01-01','M','contact@gmail.com','F',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(35,'Diego Feitosa','Rua São Paulo, 78','84 1279-9778','1990-01-01','S','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(36,'Rafael Sobis','Rua Titulos, 34','83 1236-5636','1990-01-01','M','contact@gmail.com','M',1,2,NULL,NULL,NULL);
+INSERT INTO customer VALUES(37,'Marcelo Crosara','Rua Horizonte, 89','84 1209-5098','1990-01-01','M','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(38,'Augusto dos Reis','Rua Taquari, 78','83 1252-2578','1990-01-01','C','contact@gmail.com','M',1,1,NULL,NULL,NULL);
+INSERT INTO customer VALUES(39,'Hugo Sacramento','Rua Belém, 123','84 1295-5958','1990-01-01','C','contact@gmail.com','M',1,4,NULL,NULL,NULL);
+INSERT INTO customer VALUES(40,'Giovanni Dall Oglio','Rua da Conceicao','(51) 8111-2222','2013-02-15','S','giovanni@dalloglio.net','M',1,1,NULL,NULL,NULL);
+
+
 CREATE TABLE contact (
   id INTEGER PRIMARY KEY NOT NULL, 
   type VARCHAR(200), 
@@ -140,6 +149,7 @@ CREATE TABLE product(
   unity VARCHAR(200),
   photo_path text
 );
+
 INSERT INTO product VALUES(1,'Pendrive 512Mb',10.0,57.6,'PC','files/images/1/pendrive.jpg');
 INSERT INTO product VALUES(2,'HD 120 GB',20.0,180.0,'PC','files/images/2/hd.jpg');
 INSERT INTO product VALUES(3,'SD CARD  512MB',4.0,35.0,'PC','files/images/3/sdcard.jpg');
@@ -166,6 +176,7 @@ INSERT INTO product VALUES(23,'SPEAKER AS-5100 White',5.0,180.0,'PC',NULL);
 INSERT INTO product VALUES(24,'Keyb. USB AK-806',14.0,40.0,'PC',NULL);
 
 CREATE TABLE sale_status (id int primary key, name text, color text);
+
 INSERT INTO sale_status VALUES(1,'Quote','#9c9c9c');
 INSERT INTO sale_status VALUES(2,'Aproved','#eba52d');
 INSERT INTO sale_status VALUES(3,'Processing','#75aaff');
@@ -234,6 +245,7 @@ INSERT INTO sale_item VALUES(26,40.0,1.0,0.0,39.0,4,10);
 
 
 CREATE TABLE trash_item (id INTEGER PRIMARY KEY NOT NULL, content text);
+
 INSERT INTO trash_item values (1, 'Content #1');
 INSERT INTO trash_item values (2, 'Content #2');
 INSERT INTO trash_item values (3, 'Content #3');
@@ -283,9 +295,12 @@ CREATE TABLE test (
   city_id integer references city(id),
   customer_id integer references customer(id)
 );
+
 CREATE TABLE IF NOT EXISTS product_image (id INTEGER PRIMARY KEY NOT NULL, product_id integer references product(id), image text);
+
 INSERT INTO product_image VALUES(1,1,'files/images/1/libreoffice-oasis-text-template.png');
 INSERT INTO product_image VALUES(2,1,'files/images/1/libreoffice-oasis-web-template.png');
+
 CREATE TABLE kanban_item (
   id         INTEGER PRIMARY KEY NOT NULL,
   title      TEXT,
