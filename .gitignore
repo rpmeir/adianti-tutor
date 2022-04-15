@@ -1,6 +1,5 @@
 files/*
 tmp/*
-/lib
 /vendor
 /app/output/*
 .idea/
